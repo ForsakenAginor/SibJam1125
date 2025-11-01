@@ -1,3 +1,4 @@
+using Assets.Source.Scripts.DI.Services.Game;
 using Assets.Source.Scripts.DI.Services.Global;
 using UnityEngine;
 using Zenject;
@@ -11,10 +12,11 @@ public class PlayerFacade : MonoBehaviour
     private IZenjectInstantiateWrapper _instantiateWrapper;
 
     [Inject]
-    public void Construct(IZenjectInstantiateWrapper instantiateWrapper)
+    public void Construct(IZenjectInstantiateWrapper instantiateWrapper, INoiseVignetteEffect noiseVignetteEffect, IColorizationFSEffect colorizationFSEffect) 
     {
         _instantiateWrapper = instantiateWrapper;
         _oxygenManager = _instantiateWrapper.Create<PlayerOxygenManager>();
+        OxygenFSEffectsAdapter oxygenFSEffectsAdapter = new OxygenFSEffectsAdapter(noiseVignetteEffect, colorizationFSEffect ,_oxygenManager.Oxigen);
     }
 
     public PlayerSensitivityChanger SensitivityChanger => _sensitivityChanger;

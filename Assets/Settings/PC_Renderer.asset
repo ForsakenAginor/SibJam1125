@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
   m_Name: Render Feature  Outline Transparent
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     passTag: Render Feature  Outline Transparent
     Event: 550
@@ -130,11 +130,11 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: 7833122117494664109}
   - {fileID: -7922922079952044711}
-  - {fileID: -8540799996192292162}
   - {fileID: -3721179431440264388}
+  - {fileID: -8540799996192292162}
   - {fileID: 8928330549725971937}
   - {fileID: -6333764101329901103}
-  m_RendererFeatureMap: ad6b866f10d7b46c59fd5b8158200c92be024d91a7fb78893c5383d305b75bcc00000000000000000000000000000000
+  m_RendererFeatureMap: ad6b866f10d7b46c59fd5b8158200c923c5383d305b75bccbe024d91a7fb788900000000000000000000000000000000
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
   m_Name: Render Feature - Outline Opaque
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     passTag: RenderObjectsFeature
     Event: 300

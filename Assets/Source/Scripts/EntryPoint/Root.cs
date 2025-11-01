@@ -20,15 +20,19 @@ namespace Assets.Source.Scripts.EntryPoint
         private List<IDataSaveLoadService> _saveLoadServices = new();
         private HealthVignetteEffect _healthVignette;
         private NoiceVignetteEffect _noiceVignette;
+        private IColorizationFSEffect _colorizationFSEffect;
 
         [Inject]
-        public void Construct(ISceneChanger sceneChanger, SaveDataProvider saveDataProvider, HealthVignetteEffect healthVignette, NoiceVignetteEffect noiceVignette)
+        public void Construct(ISceneChanger sceneChanger, SaveDataProvider saveDataProvider, HealthVignetteEffect healthVignette, NoiceVignetteEffect noiceVignette,
+            IColorizationFSEffect colorizationFSEffect)
         {
             _sceneChanger = sceneChanger;
             _saveDataProvider = saveDataProvider;
             _healthVignette = healthVignette;
             _noiceVignette = noiceVignette;
+            _colorizationFSEffect = colorizationFSEffect;
 
+            _colorizationFSEffect.Enable();
             _healthVignette.Enable();
             _noiceVignette.Enable();
             _saveLoadServices.Add(_soundInitializer);
@@ -45,6 +49,7 @@ namespace Assets.Source.Scripts.EntryPoint
 
         private void OnDestroy()
         {
+            _colorizationFSEffect.Disable();
             _healthVignette.Disable();
             _noiceVignette.Disable();
             _closeButton.onClick.RemoveListener(OnCloseButtonClick);

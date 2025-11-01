@@ -9,5 +9,7 @@ namespace Assets.Source.Scripts.Utility
         public int Amount { get; }
 
         public int Maximum { get; }
+
+        public float Percent => (float) Amount / Maximum;
     }
 }

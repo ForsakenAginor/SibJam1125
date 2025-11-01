@@ -9,10 +9,10 @@ namespace Assets.Source.Scripts.Cheats
     {
 #if UNITY_EDITOR
         private IHealthDamageEffect _healthVignette;
-        private INoiceVignetteEffect _noiceEffect;
+        private INoiseVignetteEffect _noiceEffect;
 
         [Inject]
-        public void Construct(IHealthDamageEffect healthVignette, INoiceVignetteEffect noiceEffect)
+        public void Construct(IHealthDamageEffect healthVignette, INoiseVignetteEffect noiceEffect)
         {
             _healthVignette = healthVignette;
             _noiceEffect = noiceEffect;

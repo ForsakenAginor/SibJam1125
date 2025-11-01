@@ -91,7 +91,7 @@ namespace Assets.Source.Scripts.DI.Installers
                 .NonLazy();
 
             Container
-                .Bind<INoiceVignetteEffect>()
+                .Bind<INoiseVignetteEffect>()
                 .To<NoiceVignetteEffect>()
                 .FromInstance(effect)
                 .AsCached();

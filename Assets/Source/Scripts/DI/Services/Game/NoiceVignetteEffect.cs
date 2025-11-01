@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace Assets.Source.Scripts.DI.Services.Game
 {
-    public interface INoiceVignetteEffect
+    public interface INoiseVignetteEffect
     {
         public void Disable();
 
@@ -13,14 +13,16 @@ namespace Assets.Source.Scripts.DI.Services.Game
         public void SetEffectStrength(float value);
     }
 
-    public class NoiceVignetteEffect : INoiceVignetteEffect
+    public class NoiceVignetteEffect : INoiseVignetteEffect
     {
         private const string RadiusParameter = "_Radius";
         private const string SoftnessParameter = "_Softness";
-        private const float MinRadius = 0.4f;
-        private const float MinSoftness = 0.5f;
-        private const float MaxRadius = 1f;
-        private const float MaxSoftness = 1f;
+        private const string ColorParameter = "_Color";
+
+        private const float MinRadius = 0.3f;
+        private const float MinSoftness = 0.6f;
+        private const float MaxRadius = 0.8f;
+        private const float MaxSoftness = 0.7f;
         private const float TweenDuration = 1f;
 
         private readonly ScriptableRendererFeature _feature;
@@ -28,6 +30,7 @@ namespace Assets.Source.Scripts.DI.Services.Game
 
         private Tweener _radiusTweener;
         private Tweener _softnessTweener;
+        private Tweener _colorTweener;
 
         public NoiceVignetteEffect(ScriptableRendererFeature feature, Material material)
         {
@@ -55,10 +58,13 @@ namespace Assets.Source.Scripts.DI.Services.Game
 
             _radiusTweener?.Kill();
             _softnessTweener?.Kill();
+            _colorTweener?.Kill();
 
             float remappedRadius = Unity.Mathematics.math.remap(0, 1, MinRadius, MaxRadius, value);
             float remappedSoftness = Unity.Mathematics.math.remap(0, 1, MinSoftness, MaxSoftness, value);
+            Color targetColor = Color.Lerp(Color.white, Color.red, value);
 
+            _colorTweener = _material.DOColor(targetColor, ColorParameter, TweenDuration);
             _radiusTweener = _material.DOFloat(remappedRadius, RadiusParameter, TweenDuration);
             _softnessTweener = _material.DOFloat(remappedSoftness, SoftnessParameter, TweenDuration);
         }

@@ -34,7 +34,6 @@ public class OxygenView : MonoBehaviour
     private void OnOxygenChanged()
     {
         _bar.value = _oxygen.Amount;
-        float percent = (float)_oxygen.Amount / _oxygen.Maximum;
-        _text.text = percent.ToString("P0");
+        _text.text = _oxygen.Percent.ToString("P0");
     }
 }
