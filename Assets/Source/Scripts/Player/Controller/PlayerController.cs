@@ -41,11 +41,13 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         _input.OnLook += OnLook;
+        _input.OnJump += OnJump;
     }
 
     private void OnDisable()
     {
         _input.OnLook -= OnLook;
+        _input.OnJump -= OnJump;
     }
 
     private void Update()
@@ -79,6 +81,14 @@ public class PlayerController : MonoBehaviour
         // Гравитация
         _velocity.y += gravity * Time.deltaTime;
         _characterController.Move(_velocity * Time.deltaTime);
+    }
+
+    private void OnJump()
+    {
+        if (_isGrounded)
+        {
+            _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
     }
 
     private void OnLook(Vector2 lookInput)

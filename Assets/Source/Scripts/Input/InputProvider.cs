@@ -8,6 +8,7 @@ public interface IPlayerInput
 
     public event Action OnInteractStart;
     public event Action OnInteractCancel;
+    public event Action OnJump;
     public event Action<Vector2> OnLook;
 
     public Vector2 GetMoveInput();
@@ -37,6 +38,7 @@ public class InputProvider : IPlayerInput, IInputStateManager
         _inputActions.Player.Sprint.started += OnSprintStarted;
         _inputActions.Player.Sprint.canceled += OnSprintCanceled;
         _inputActions.Player.Look.performed += OnLookPerformed;
+        _inputActions.Player.Jump.performed += OnJumpPerformed;
 
         _inputActions.Player.Interact.started += OnInteractStarted;
         _inputActions.Player.Interact.canceled += OnInteractCanceled;
@@ -51,6 +53,7 @@ public class InputProvider : IPlayerInput, IInputStateManager
         _inputActions.Player.Look.performed -= OnLookPerformed;
         _inputActions.Player.Interact.started -= OnInteractStarted;
         _inputActions.Player.Interact.canceled -= OnInteractCanceled;
+        _inputActions.Player.Jump.performed -= OnJumpPerformed;
 
         _inputActions.Disable();
         _inputActions.Dispose();
@@ -60,6 +63,7 @@ public class InputProvider : IPlayerInput, IInputStateManager
     public event Action<Vector2> OnLook;
     public event Action OnInteractStart;
     public event Action OnInteractCancel;
+    public event Action OnJump;
 
     public Vector2 GetMoveInput() => _inputActions.Player.Move.ReadValue<Vector2>();
 
@@ -82,6 +86,11 @@ public class InputProvider : IPlayerInput, IInputStateManager
     private void OnEscPerformed(InputAction.CallbackContext context)
     {
         EscPerformed?.Invoke();
+    }
+
+    private void OnJumpPerformed(InputAction.CallbackContext context)
+    {
+        OnJump?.Invoke();
     }
 
     private void OnSprintStarted(InputAction.CallbackContext context)

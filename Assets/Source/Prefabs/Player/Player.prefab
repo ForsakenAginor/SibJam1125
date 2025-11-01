@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   walkSpeed: 5
   sprintSpeed: 8
-  jumpHeight: 2
+  jumpHeight: 1.3
   gravity: -9.81
   _cameraAnchor: {fileID: 2038857364784023998}
   verticalSensitivity: 2
