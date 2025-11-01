@@ -15,6 +15,9 @@ namespace Assets.Source.Scripts.DI.Installers
         [SerializeField] private MusicPlayer _musicPlayerPrefab;
         [SerializeField] private AudioPlayer _audioPlayerPrefab;
 
+        [Header("Other")]
+        [SerializeField] private PlayerInteractor _playerInteractorPrefab;
+
         [Header("Player")]
         [SerializeField] private PlayerFacade _playerPrefab;
 
@@ -39,6 +42,25 @@ namespace Assets.Source.Scripts.DI.Installers
             BindNoiceVignetteEffect();
             BindColorizationEffect();
             BindPlayer();
+            BindInteractor();
+        }
+
+        private void BindInteractor()
+        {
+            PlayerInteractor interactor = _instantiateWrapper.Instantiate(_playerInteractorPrefab, Vector3.zero, Quaternion.identity);
+
+            Container
+                .Bind<PlayerInteractor>()
+                .To<PlayerInteractor>()
+                .FromInstance(interactor)
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .Bind<IPlayerInteractor>()
+                .To<PlayerInteractor>()
+                .FromInstance(interactor)
+                .AsCached();
         }
 
         private void BindPlayer()

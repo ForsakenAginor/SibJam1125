@@ -6,7 +6,8 @@ public interface IPlayerInput
 {
     public bool IsSprinted { get; }
 
-    public event Action OnInteract;
+    public event Action OnInteractStart;
+    public event Action OnInteractCancel;
     public event Action<Vector2> OnLook;
 
     public Vector2 GetMoveInput();
@@ -36,7 +37,9 @@ public class InputProvider : IPlayerInput, IInputStateManager
         _inputActions.Player.Sprint.started += OnSprintStarted;
         _inputActions.Player.Sprint.canceled += OnSprintCanceled;
         _inputActions.Player.Look.performed += OnLookPerformed;
-        _inputActions.Player.Interact.performed += OnInteractPerformed;
+
+        _inputActions.Player.Interact.started += OnInteractStarted;
+        _inputActions.Player.Interact.canceled += OnInteractCanceled;
     }
 
     ~InputProvider()
@@ -46,7 +49,8 @@ public class InputProvider : IPlayerInput, IInputStateManager
         _inputActions.Player.Sprint.started -= OnSprintStarted;
         _inputActions.Player.Sprint.canceled -= OnSprintCanceled;
         _inputActions.Player.Look.performed -= OnLookPerformed;
-        _inputActions.Player.Interact.performed -= OnInteractPerformed;
+        _inputActions.Player.Interact.started -= OnInteractStarted;
+        _inputActions.Player.Interact.canceled -= OnInteractCanceled;
 
         _inputActions.Disable();
         _inputActions.Dispose();
@@ -54,7 +58,8 @@ public class InputProvider : IPlayerInput, IInputStateManager
 
     public event Action EscPerformed;
     public event Action<Vector2> OnLook;
-    public event Action OnInteract;
+    public event Action OnInteractStart;
+    public event Action OnInteractCancel;
 
     public Vector2 GetMoveInput() => _inputActions.Player.Move.ReadValue<Vector2>();
 
@@ -94,9 +99,14 @@ public class InputProvider : IPlayerInput, IInputStateManager
         OnLook?.Invoke(context.ReadValue<Vector2>());
     }
 
-    private void OnInteractPerformed(InputAction.CallbackContext context)
+    private void OnInteractCanceled(InputAction.CallbackContext context)
     {
-        OnInteract?.Invoke();
+        OnInteractCancel?.Invoke();
+    }
+
+    private void OnInteractStarted(InputAction.CallbackContext context)
+    {
+        OnInteractStart?.Invoke();
     }
 
     private enum InputState
