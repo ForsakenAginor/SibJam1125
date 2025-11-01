@@ -10,15 +10,21 @@ namespace Assets.Source.Scripts.DI.Installers
 {
     public class GameSceneInstaller : MonoInstaller
     {
+        [Header("Audio")]
         [SerializeField] private UIAudioPlayer _uiAudioPlayerPrefab;
         [SerializeField] private MusicPlayer _musicPlayerPrefab;
         [SerializeField] private AudioPlayer _audioPlayerPrefab;
+
+        [Header("Player")]
+        [SerializeField] private PlayerFacade _playerPrefab;
 
         [Header("Vignettes")]
         [SerializeField] private ScriptableRendererFeature _healthVignetteEffect;
         [SerializeField] private Material _healthVignetteMaterial;
         [SerializeField] private ScriptableRendererFeature _noiceVignetteEffect;
         [SerializeField] private Material _noiceVignetteMaterial;
+        [SerializeField] private ScriptableRendererFeature _colorizationFSEffect;
+        [SerializeField] private Material _colorizationFSMaterial;
 
         private ZenjectInstantiateWrapper _instantiateWrapper;
 
@@ -31,6 +37,46 @@ namespace Assets.Source.Scripts.DI.Installers
             BindTimeIncrement();
             BindHealthVignetteEffect();
             BindNoiceVignetteEffect();
+            BindColorizationEffect();
+            BindPlayer();
+        }
+
+        private void BindPlayer()
+        {
+            PlayerFacade player = _instantiateWrapper.Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
+
+
+            Container
+                .Bind<PlayerFacade>()
+                .To<PlayerFacade>()
+                .FromInstance(player)
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .Bind<PlayerSensitivityChanger>()
+                .To<PlayerSensitivityChanger>()
+                .FromInstance(player.SensitivityChanger)
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindColorizationEffect()
+        {
+            ColorizationFSEffect effect = new ColorizationFSEffect(_colorizationFSEffect, _colorizationFSMaterial);
+
+            Container
+                .Bind<ColorizationFSEffect>()
+                .To<ColorizationFSEffect>()
+                .FromInstance(effect)
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .Bind<IColorizationFSEffect>()
+                .To<ColorizationFSEffect>()
+                .FromInstance(effect)
+                .AsCached();
         }
 
         private void BindNoiceVignetteEffect()

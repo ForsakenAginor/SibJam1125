@@ -1,5 +1,6 @@
 ﻿using Assets.Source.Scripts.DI.Services.Boot;
 using Assets.Source.Scripts.SaveSystem;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +16,17 @@ namespace Assets.Source.Scripts.DI.Installers
             InitSceneChanger();
             BindSaveLoadService();
             BindConfigurations();
+            BindInput();
+        }
+
+        private void BindInput()
+        {
+            InputProvider inputProvider = new();
+
+            Container.Bind<InputProvider>().To<InputProvider>().FromInstance(inputProvider).AsSingle().NonLazy();
+            Container.Bind<IPlayerInput>().To<InputProvider>().FromInstance(inputProvider).AsCached();
+            Container.Bind<IInputStateManager>().To<InputProvider>().FromInstance(inputProvider).AsCached();
+
         }
 
         private void BindConfigurations()
