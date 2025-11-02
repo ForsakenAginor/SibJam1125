@@ -78,7 +78,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509b5bd0aa21d1b4cb6944565a006065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMask
-  light: {fileID: 8368484929007136761}
+  light: {fileID: 1759692212165461441}
+--- !u!1 &5638926533549333432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1384857816893699176}
+  - component: {fileID: 2681201575851832293}
+  m_Layer: 0
+  m_Name: Fog Void
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1384857816893699176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5638926533549333432}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10, y: 3.3333335, z: 10}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2237907094783906127}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2681201575851832293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5638926533549333432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed88bbea456e9473fa8c1a5c334bb5f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::VolumetricFogAndMist2.FogVoid
+  roundness: 0.5
+  falloff: 0.8
 --- !u!1 &7904057642845991366
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +134,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2038857364784023998}
-  - component: {fileID: 1172190337552786134}
   m_Layer: 0
   m_Name: CameraAnchor
   m_TagString: Untagged
@@ -112,20 +157,6 @@ Transform:
   - {fileID: 8355029042853891807}
   m_Father: {fileID: 3710586315295501440}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1172190337552786134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7904057642845991366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed88bbea456e9473fa8c1a5c334bb5f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::VolumetricFogAndMist2.FogVoid
-  roundness: 0.5
-  falloff: 0.5
 --- !u!1 &8026122182771325280
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spot Light
       objectReference: {fileID: 0}
+    - target: {fileID: 4450984810774093697, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4636838763157103958, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -313,11 +348,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4636838763157103958, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4636838763157103958, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.64
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4636838763157103958, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_LocalRotation.w
@@ -349,11 +384,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4636838763157103958, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1384857816893699176}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4450984810774093697, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6856436502741269187}
+    - targetCorrespondingSourceObject: {fileID: 4450984810774093697, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1759692212165461441}
   m_SourcePrefab: {fileID: 100100000, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
 --- !u!4 &2237907094783906127 stripped
 Transform:
@@ -379,8 +420,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::VolumetricFogAndMist2.FogPointLight
   inscattering: 30
   intensity: 0.2
---- !u!108 &8368484929007136761 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 3131457874588883936, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
-  m_PrefabInstance: {fileID: 6870233453071594521}
+--- !u!114 &1759692212165461441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7102999006469368728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c096e5f8ea8c5334f8c2524ea9252527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Source.Scripts.Utility.SwitchableElement

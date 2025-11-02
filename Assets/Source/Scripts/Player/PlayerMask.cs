@@ -1,14 +1,26 @@
+using Assets.Source.Scripts.Utility;
 using UnityEngine;
 
 public class PlayerMask : MonoBehaviour
 {
-    [SerializeField] private Light light;
+    [SerializeField] private SwitchableElement light;
+
+    private bool _isOn = false;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            light.enabled = !light.enabled;
+            if (_isOn)
+            {
+                _isOn = false;
+                light.Disable();
+            }
+            else
+            {
+                _isOn = true;
+                light.Enable();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
