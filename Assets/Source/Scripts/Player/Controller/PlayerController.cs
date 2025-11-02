@@ -1,15 +1,18 @@
-﻿using UnityEngine;
+﻿using Assets.Source.Scripts.Utility;
+using UnityEngine;
 using Zenject;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform _mask;
+    [SerializeField] private Flashlight _flashlight;
 
     private Vector3 _maskOffset = new Vector3(0, -1, 0.6f);
 
     [Header("Movement Settings")]
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float sprintSpeed = 8f;
+    [SerializeField] private float maxSpeedKoef = 0.5f;
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float gravity = -9.81f;
 
@@ -43,6 +46,8 @@ public class PlayerController : MonoBehaviour
 
         _mask.SetParent(_playerCamera.transform);
         _mask.localPosition = _maskOffset;
+
+        _flashlight = _mask.GetComponentInChildren<Flashlight>();
     }
 
     private void OnEnable()
@@ -81,6 +86,8 @@ public class PlayerController : MonoBehaviour
 
         // Выбор скорости (ходьба/бег)
         float currentSpeed = _input.IsSprinted ? sprintSpeed : walkSpeed;
+        if (_flashlight.IsRecharge)
+            currentSpeed *= maxSpeedKoef;
 
         // Применение движения
         _characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
@@ -100,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnLook(Vector2 lookInput)
     {
-        
+
         float x = Mathf.Clamp(lookInput.x, -1f, 1f);
         float y = Mathf.Clamp(lookInput.y, -1f, 1f);
         _xRotation -= y * verticalSensitivity;

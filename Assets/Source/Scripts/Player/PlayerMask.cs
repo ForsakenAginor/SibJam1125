@@ -29,9 +29,10 @@ public class PlayerMask : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        flashlight.IsRecharge = false;
+        if (Input.GetKey(KeyCode.R))
         {
-            flashlight.Recharge();
+            flashlight.IsRecharge = true;
         }
 
         if (Input.GetKeyDown(KeyCode.G))

@@ -688,12 +688,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Source.Scripts.Utility.Flashlight
   light: {fileID: 8368484929007136761}
   fadeSpeed: 3
+  rechargeSpeedMax: 10
+  rechargeIncreaseSpeed: 2
   fogPoint: {fileID: 6856436502741269187}
   fogVoid: {fileID: 2681201575851832293}
   fog: {fileID: 0}
   audioSource: {fileID: 0}
   isDisabled: 0
-  isRecharge: 0
+  IsRecharge: 0
+  rechargeTime: 1
   audioVolumeStart: 0
 --- !u!82 &832120279269618283
 AudioSource:
