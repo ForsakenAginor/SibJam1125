@@ -15,7 +15,7 @@ namespace Assets.Source.Scripts.EntryPoint
     {
         [Header("Other")]
         [SerializeField] private AudioSaveLoadService _soundInitializer;
-        [SerializeField] private Button _closeButton;
+        [SerializeField] private Button[] _closeButtons;
         [SerializeField] private Button _restartButton;
         [SerializeField] private InGameMenu _gameMenu;
 
@@ -50,7 +50,9 @@ namespace Assets.Source.Scripts.EntryPoint
             _saveLoadServices.Add(sensitivitySaveLoadService);
             LoadData();
 
-            _closeButton.onClick.AddListener(OnCloseButtonClick);
+            foreach(var button in _closeButtons)
+                button.onClick.AddListener(OnCloseButtonClick);
+
             _restartButton.onClick.AddListener(OnRestartButtonClick);
             _sceneChanger.FadeOut();
             Time.timeScale = 1f;
@@ -61,7 +63,10 @@ namespace Assets.Source.Scripts.EntryPoint
             _colorizationFSEffect.Disable();
             _healthVignette.Disable();
             _noiceVignette.Disable();
-            _closeButton.onClick.RemoveListener(OnCloseButtonClick);
+
+            foreach (var button in _closeButtons)
+                button.onClick.RemoveListener(OnCloseButtonClick);
+
             _restartButton.onClick.RemoveListener(OnRestartButtonClick);
         }
 
