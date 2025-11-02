@@ -375,8 +375,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _mask: {fileID: 8355029042853891807}
+  _flashlight: {fileID: 0}
   walkSpeed: 5
   sprintSpeed: 8
+  maxSpeedKoef: 0.5
   jumpHeight: 1.3
   gravity: -9.81
   _cameraAnchor: {fileID: 2038857364784023998}
@@ -486,16 +488,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7248572879091176427}
     - target: {fileID: 3128754793143483962, guid: 63018f837c13ba847bbafc9425865e4d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128754793143483962, guid: 63018f837c13ba847bbafc9425865e4d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128754793143483962, guid: 63018f837c13ba847bbafc9425865e4d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128754793143483962, guid: 63018f837c13ba847bbafc9425865e4d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3128754793143483962, guid: 63018f837c13ba847bbafc9425865e4d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3128754793143483962, guid: 63018f837c13ba847bbafc9425865e4d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.64
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 3128754793143483962, guid: 63018f837c13ba847bbafc9425865e4d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -524,6 +538,10 @@ PrefabInstance:
     - target: {fileID: 3128754793143483962, guid: 63018f837c13ba847bbafc9425865e4d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128754793143483962, guid: 63018f837c13ba847bbafc9425865e4d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7098664082540608544, guid: 63018f837c13ba847bbafc9425865e4d, type: 3}
       propertyPath: m_Name
@@ -694,7 +712,8 @@ MonoBehaviour:
   fogVoid: {fileID: 2681201575851832293}
   fog: {fileID: 0}
   audioSource: {fileID: 0}
-  isDisabled: 0
+  fillImage: {fileID: 0}
+  isDisabled: 1
   IsRecharge: 0
   rechargeTime: 1
   audioVolumeStart: 0
