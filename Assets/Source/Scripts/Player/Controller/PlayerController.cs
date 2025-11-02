@@ -3,6 +3,9 @@ using Zenject;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Transform _mask;
+    private Vector3 _maskOffset = new Vector3(0, -1, 0.6f);
+
     [Header("Movement Settings")]
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float sprintSpeed = 8f;
@@ -36,6 +39,9 @@ public class PlayerController : MonoBehaviour
         _playerCamera.transform.SetParent(_cameraAnchor);
         _playerCamera.transform.localPosition = Vector3.zero;
         _playerCamera.transform.rotation = Quaternion.identity;
+
+        _mask.SetParent(_playerCamera.transform);
+        _mask.localPosition = _maskOffset;
     }
 
     private void OnEnable()

@@ -21,7 +21,7 @@ public class CleanPoint
 
 public class DirtPainter : MonoBehaviour
 {
-    public PlayerTest player;
+    public CharacterController player;
     public SpriteRenderer targetRenderer;
 
     public int textureSize = 512;
@@ -109,7 +109,7 @@ public class DirtPainter : MonoBehaviour
 
     void Fade()
     {
-        var speed = player.CurrentSpeed;
+        var speed = player.velocity.magnitude;
         // прозрачный
 
         // Определяем центр текстуры
