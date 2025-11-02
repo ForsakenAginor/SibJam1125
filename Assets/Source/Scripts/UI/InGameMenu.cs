@@ -43,6 +43,16 @@ public class InGameMenu : MonoBehaviour
         _sensYSlider.onValueChanged.RemoveListener(OnSensYChanged);
     }
 
+    public float XSens => _sensXSlider.value;
+
+    public float YSens => _sensYSlider.value;
+
+    public void SetSens(float x, float y)
+    {
+        _sensXSlider.value = x;
+        _sensYSlider.value = y;
+    }
+
     private void OnSensXChanged(float value)
     {
         _sensitivityChanger.SetXSens(value);
