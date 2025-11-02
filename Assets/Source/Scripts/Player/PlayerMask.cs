@@ -7,6 +7,11 @@ public class PlayerMask : MonoBehaviour
 
     private bool _isOn = false;
 
+    private void Start()
+    {
+        _isOn = light.gameObject.activeSelf;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
