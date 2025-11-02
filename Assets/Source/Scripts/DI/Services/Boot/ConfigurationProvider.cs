@@ -18,5 +18,7 @@ namespace Assets.Source.Scripts.DI.Services.Boot
         public float WalkSpeed => _gameSettings.WalkSpeed;
 
         public float SprintOxygenMultiplier => _gameSettings.SprintOxygenMultiplier;
+
+        public float OxygenReloadTime => _gameSettings.OxygenReloadTime;
     }
 }

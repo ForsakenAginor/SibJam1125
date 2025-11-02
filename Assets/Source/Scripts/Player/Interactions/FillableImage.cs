@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class FillableImage : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class FillableImage : MonoBehaviour
     private Tween _fillTween;
 
     public event Action FillComplete;
+
+    [Inject]
+    public void Construct(IGameSettings gameSettings)
+    {
+        _unfillTime = gameSettings.OxygenReloadTime;
+    }
 
     private void OnEnable()
     {
@@ -38,6 +45,5 @@ public class FillableImage : MonoBehaviour
         _fillTween = _fillableImage
             .DOFillAmount(0f, _unfillTime)
             .SetEase(Ease.Linear);
-
     }
 }
