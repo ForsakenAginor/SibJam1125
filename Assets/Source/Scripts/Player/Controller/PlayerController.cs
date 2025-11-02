@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _mask;
     [SerializeField] private Flashlight _flashlight;
 
-    private Vector3 _maskOffset = new Vector3(0, -1, 0.6f);
+    private Vector3 _maskOffset = new Vector3(0, -0.5f, 0.32f);
 
     [Header("Movement Settings")]
     [SerializeField] private float walkSpeed = 5f;
