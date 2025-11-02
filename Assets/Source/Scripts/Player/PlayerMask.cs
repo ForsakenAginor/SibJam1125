@@ -29,7 +29,12 @@ public class PlayerMask : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            flashlight.Recharge();
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
         {
             DirtPainter.Instance.StartClean();
         }

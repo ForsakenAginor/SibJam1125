@@ -18,9 +18,11 @@ namespace Assets.Source.Scripts.Utility
 
         public bool isDisabled = false;
 
+        public bool isRecharge = false;
+
         //private bool _isOn = false;
         private float intensity;
-        private float intensityMax;
+        private float intensityStart;
 
         private float falloff;
         private float falloffStart;
@@ -40,7 +42,7 @@ namespace Assets.Source.Scripts.Utility
             audioSource = GetComponent<AudioSource>();
             audioVolumeStart = audioSource.volume;
 
-            intensityMax = light.intensity;
+            intensityStart = light.intensity;
             intensity = light.intensity;
 
             falloff = fogVoid.falloff;
@@ -56,15 +58,20 @@ namespace Assets.Source.Scripts.Utility
                 return;
 
             intensity -= fadeSpeed * Time.deltaTime;
-            intensity = Mathf.Clamp(intensity, 0, intensityMax);
+            intensity = Mathf.Clamp(intensity, 0, intensityStart);
             light.intensity = intensity;
 
-            var intensityKoef = (float)intensity / intensityMax;
+            var intensityKoef = (float)intensity / intensityStart;
 
             fogVoid.falloff = Mathf.Lerp(1, falloffStart, intensityKoef);
             fog.settings.noiseStrength = Mathf.Lerp(fogStrengthStart, 0, intensityKoef);
 
             audioSource.volume = Mathf.Lerp(audioVolumeStart, audioVolumeStart, intensityKoef);
+        }
+
+        public void Recharge()
+        {
+            intensity = intensityStart;
         }
 
         public void Enable()
