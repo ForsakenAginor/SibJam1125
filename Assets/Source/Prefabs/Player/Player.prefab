@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3568247857106454725}
   - component: {fileID: 972757057014451238}
   - component: {fileID: 5961270938605479796}
-  - component: {fileID: 6194420711422823358}
+  - component: {fileID: -243770839930460315}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -82,6 +82,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMask
   light: {fileID: 1759692212165461441}
   flashlight: {fileID: 6194669630539206616}
+--- !u!114 &-243770839930460315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394684903986368003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441fc4e5ce8187c4d9d58a37e5ed446e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Minimap
+  _arrow: {fileID: 2348843359574014794}
+  _minimapCamera: {fileID: 7905253800212367148}
 --- !u!1 &5638926533549333432
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,6 +693,8 @@ MonoBehaviour:
   fog: {fileID: 0}
   audioSource: {fileID: 0}
   isDisabled: 0
+  isRecharge: 0
+  audioVolumeStart: 0
 --- !u!82 &832120279269618283
 AudioSource:
   m_ObjectHideFlags: 0
