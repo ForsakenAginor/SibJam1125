@@ -27,7 +27,6 @@ public class FillableImage : MonoBehaviour
         _fillTween = _fillableImage
             .DOFillAmount(1f, _fillTime)
             .SetEase(Ease.Linear)
-            .SetUpdate(true)
             .OnComplete(() => FillComplete?.Invoke());
     }
 
@@ -38,8 +37,7 @@ public class FillableImage : MonoBehaviour
 
         _fillTween = _fillableImage
             .DOFillAmount(0f, _unfillTime)
-            .SetEase(Ease.Linear)
-            .SetUpdate(true);
+            .SetEase(Ease.Linear);
 
     }
 }

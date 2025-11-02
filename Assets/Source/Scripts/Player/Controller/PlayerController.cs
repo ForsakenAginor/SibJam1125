@@ -31,9 +31,11 @@ public class PlayerController : MonoBehaviour
     private bool _isGrounded;
 
     [Inject]
-    public void Construct(IPlayerInput playerInput)
+    public void Construct(IPlayerInput playerInput, IGameSettings gameSettings)
     {
         _input = playerInput;
+        walkSpeed = gameSettings.WalkSpeed;
+        sprintSpeed = gameSettings.SprintSpeed;
     }
 
     private void Awake()

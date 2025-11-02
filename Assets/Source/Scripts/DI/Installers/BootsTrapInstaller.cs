@@ -37,6 +37,12 @@ namespace Assets.Source.Scripts.DI.Installers
                 .FromInstance(_configurationProvider)
                 .AsSingle()
                 .NonLazy();
+
+            Container
+                .Bind<IGameSettings>()
+                .To<ConfigurationProvider>()
+                .FromInstance(_configurationProvider)
+                .AsCached();
         }
 
         private void InitSceneChanger()
