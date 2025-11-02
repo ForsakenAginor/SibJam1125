@@ -14,6 +14,8 @@ public interface IGameSettings
     public float WalkSpeed { get; }
 
     public float SprintOxygenMultiplier { get; }
+
+    public float OxygenReloadTime { get; }
 }
 
 [CreateAssetMenu(fileName = "GameConfigurations", menuName = "Configurations/GameConfigurations")]
@@ -25,6 +27,7 @@ public class GameSettings : SerializedScriptableObject, IGameSettings
     [SerializeField] private int _oxygenBasicDrain = 10;
     [SerializeField] private float _drainFrequency = 1f;
     [SerializeField] private float _sprintOxygenMultiplier = 1.1f;
+    [SerializeField] private float _oxygenReloadTime = 2f;
 
     public float WalkSpeed => _walkSpeed;
 
@@ -37,4 +40,6 @@ public class GameSettings : SerializedScriptableObject, IGameSettings
     public float OxygenDrainFrequency => _drainFrequency;
 
     public float SprintOxygenMultiplier => _sprintOxygenMultiplier;
+
+    public float OxygenReloadTime => _oxygenReloadTime;
 }

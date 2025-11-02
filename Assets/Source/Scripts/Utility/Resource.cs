@@ -63,13 +63,16 @@ namespace Assets.Source.Scripts.Utility
                 throw new ArgumentOutOfRangeException(nameof(amount));
 
             _amount -= amount;
-            ResourcesAmountChanged?.Invoke();
 
             if (_amount <= 0)
             {
                 _amount = 0;
+                ResourcesAmountChanged?.Invoke();
                 ResourceOver?.Invoke();
+                return;
             }
+
+            ResourcesAmountChanged?.Invoke();
         }
     }
 }
