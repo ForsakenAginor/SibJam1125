@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using VolumetricFogAndMist2;
 
@@ -9,6 +10,11 @@ namespace Assets.Source.Scripts.Utility
     {
         [SerializeField] private Light light;
         [SerializeField] private float fadeSpeed = 1f;
+        private float currentFadeSpeed;
+
+        [SerializeField] private float rechargeSpeedMax = 5f;
+        [SerializeField] private float rechargeIncreaseSpeed = 1f;
+        private float currentRechargeSpeed;
 
         [SerializeField] private FogPointLight fogPoint;
         [SerializeField] private FogVoid fogVoid;
@@ -18,7 +24,10 @@ namespace Assets.Source.Scripts.Utility
 
         public bool isDisabled = false;
 
-        public bool isRecharge = false;
+        public bool IsRecharge = false;
+
+        [SerializeField] private float rechargeTime = 1f;
+        private float rechargeTimeout;
 
         //private bool _isOn = false;
         private float intensity;
@@ -42,6 +51,8 @@ namespace Assets.Source.Scripts.Utility
             audioSource = GetComponent<AudioSource>();
             audioVolumeStart = audioSource.volume;
 
+            currentFadeSpeed = fadeSpeed;
+
             intensityStart = light.intensity;
             intensity = light.intensity;
 
@@ -57,7 +68,19 @@ namespace Assets.Source.Scripts.Utility
             if (isDisabled)
                 return;
 
-            intensity -= fadeSpeed * Time.deltaTime;
+            if (IsRecharge)
+            {
+                currentRechargeSpeed += rechargeIncreaseSpeed * Time.deltaTime;
+                currentRechargeSpeed = Mathf.Clamp(currentRechargeSpeed, 0, rechargeSpeedMax);
+                intensity += currentRechargeSpeed * Time.deltaTime;
+            }
+            else
+            {
+                currentRechargeSpeed -= rechargeIncreaseSpeed * Time.deltaTime;
+                currentRechargeSpeed = Mathf.Clamp(currentRechargeSpeed, 0, rechargeSpeedMax);
+                intensity -= currentFadeSpeed * Time.deltaTime;
+            }
+
             intensity = Mathf.Clamp(intensity, 0, intensityStart);
             light.intensity = intensity;
 
@@ -67,11 +90,6 @@ namespace Assets.Source.Scripts.Utility
             fog.settings.noiseStrength = Mathf.Lerp(fogStrengthStart, 0, intensityKoef);
 
             audioSource.volume = Mathf.Lerp(audioVolumeStart, audioVolumeStart, intensityKoef);
-        }
-
-        public void Recharge()
-        {
-            intensity = intensityStart;
         }
 
         public void Enable()
