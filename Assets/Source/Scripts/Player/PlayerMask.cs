@@ -4,12 +4,13 @@ using UnityEngine;
 public class PlayerMask : MonoBehaviour
 {
     [SerializeField] private SwitchableElement light;
+    [SerializeField] private Flashlight flashlight;
 
     private bool _isOn = false;
 
     private void Start()
     {
-        _isOn = light.gameObject.activeSelf;
+        _isOn = flashlight.gameObject.activeSelf;
     }
 
     private void Update()
@@ -19,12 +20,12 @@ public class PlayerMask : MonoBehaviour
             if (_isOn)
             {
                 _isOn = false;
-                light.Disable();
+                flashlight.Disable();
             }
             else
             {
                 _isOn = true;
-                light.Enable();
+                flashlight.Enable();
             }
         }
 
@@ -41,6 +42,12 @@ public class PlayerMask : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             DirtPainter.Instance.FillAll();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 }
