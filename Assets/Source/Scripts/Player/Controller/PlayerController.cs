@@ -4,6 +4,7 @@ using Zenject;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform _mask;
+
     private Vector3 _maskOffset = new Vector3(0, -1, 0.6f);
 
     [Header("Movement Settings")]
