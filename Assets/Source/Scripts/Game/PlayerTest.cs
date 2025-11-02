@@ -12,6 +12,8 @@ namespace Assets.Source.Scripts.Game
 
         private bool rotateEnabled = true;
 
+        public float CurrentSpeed;
+
 
         private void Update()
         {
@@ -23,6 +25,21 @@ namespace Assets.Source.Scripts.Game
             if (Input.GetKeyDown(KeyCode.R))
             {
                 rotateEnabled = !rotateEnabled;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                DirtPainter.Instance.StartClean();
+            }
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                DirtPainter.Instance.FillAll_Test();
+            }
+
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                DirtPainter.Instance.FillAll();
             }
 
             RotateWithMouse();
@@ -38,6 +55,8 @@ namespace Assets.Source.Scripts.Game
             Vector3 forwardMovement = transform.forward * direction.z;
 
             Vector3 movement = (rightMovement + forwardMovement).normalized * speed * Time.deltaTime;
+
+            CurrentSpeed = movement.magnitude;
 
             transform.position += movement;
         }
