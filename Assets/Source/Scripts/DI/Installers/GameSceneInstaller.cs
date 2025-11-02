@@ -1,9 +1,11 @@
 ﻿using Assets.Source.Scripts.DI.Services.Game;
 using Assets.Source.Scripts.DI.Services.Global;
+using Assets.Source.Scripts.Utility;
 using Assets.Source.Scripts.Utility.Pools;
 using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Assets.Source.Scripts.DI.Installers
@@ -17,6 +19,7 @@ namespace Assets.Source.Scripts.DI.Installers
 
         [Header("Other")]
         [SerializeField] private PlayerInteractor _playerInteractorPrefab;
+        [SerializeField] private Image _flashlightImage;
 
         [Header("Player")]
         [SerializeField] private PlayerFacade _playerPrefab;
@@ -66,7 +69,8 @@ namespace Assets.Source.Scripts.DI.Installers
         private void BindPlayer()
         {
             PlayerFacade player = _instantiateWrapper.Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
-
+            var flashlight = player.GetComponentInChildren<Flashlight>();
+            flashlight.fillImage = _flashlightImage;
 
             Container
                 .Bind<PlayerFacade>()

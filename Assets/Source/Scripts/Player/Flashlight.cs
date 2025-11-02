@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using VolumetricFogAndMist2;
 
 namespace Assets.Source.Scripts.Utility
@@ -21,6 +22,8 @@ namespace Assets.Source.Scripts.Utility
         [SerializeField] private VolumetricFog fog;
 
         [SerializeField] private AudioSource audioSource;
+
+        public Image fillImage;
 
         public bool isDisabled = false;
 
@@ -84,12 +87,22 @@ namespace Assets.Source.Scripts.Utility
             intensity = Mathf.Clamp(intensity, 0, intensityStart);
             light.intensity = intensity;
 
-            var intensityKoef = (float)intensity / intensityStart;
+            var intensityKoef = intensity / intensityStart;
 
             fogVoid.falloff = Mathf.Lerp(1, falloffStart, intensityKoef);
             fog.settings.noiseStrength = Mathf.Lerp(fogStrengthStart, 0, intensityKoef);
 
             audioSource.volume = Mathf.Lerp(audioVolumeStart, audioVolumeStart, intensityKoef);
+
+            if (IsRecharge)
+            {
+                fillImage.enabled = true;
+                fillImage.fillAmount = intensityKoef;
+            }
+            else
+            {
+                fillImage.enabled = false;
+            }
         }
 
         public void Enable()
