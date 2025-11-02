@@ -25,7 +25,7 @@ public class DirtPainter : MonoBehaviour
     public SpriteRenderer targetRenderer;
 
     public int textureSize = 512;
-    public int pixelMultiplicatorCount = 100;
+    private int pixelMultiplicatorCount = 50;
 
     public int pixelMinCount = 5;
 
@@ -42,10 +42,10 @@ public class DirtPainter : MonoBehaviour
 
     public CleanPoint[] cleanPoints;
 
-    public int startX;
-    public int endX;
-    public int startY;
-    public int endY;
+    private int startX = 30;
+    private int endX = 226;
+    private int startY = 50;
+    private int endY = 200;
 
     public static DirtPainter Instance;
     public void Awake()
@@ -185,17 +185,20 @@ public class DirtPainter : MonoBehaviour
         var alpha = 0.5f;
 
         var color = new Color(0, 0, 0, alpha);
-        var pixelCount = Mathf.CeilToInt(speed * pixelMultiplicatorCount);
+        var pixelCount = Mathf.CeilToInt(speed * pixelMultiplicatorCount) * 60 * Time.deltaTime;
         if (pixelCount < pixelMinCount)
         {
-            pixelCount = pixelMinCount;
+            if (UnityEngine.Random.value < 0.25f)
+            {
+                pixelCount = pixelMinCount;
+            }
         }
 
         // pixelCount = Mathf.Clamp(pixelCount, 0, pixelMultiplicatorCount);
         var xSize = endX - startX;
         var ySize = endY - startY;
 
-        print(pixelCount);
+        //print(pixelCount);
         var pixelCountSpent = 0;
 
         var lerp = Mathf.Lerp(0.01f, 0.2f, pixelCount / pixelMinCount);
