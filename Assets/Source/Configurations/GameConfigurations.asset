@@ -23,7 +23,8 @@ MonoBehaviour:
     SerializationNodes: []
   _walkSpeed: 2
   _sprintSpeed: 4
-  _oxygenMaximum: 1000
-  _oxygenBasicDrain: 10
+  _oxygenMaximum: 200
+  _oxygenBasicDrain: 5
   _drainFrequency: 1
-  _sprintOxygenMultiplier: 2.5
+  _sprintOxygenMultiplier: 1.5
+  _oxygenReloadTime: 2
