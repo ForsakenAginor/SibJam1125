@@ -19,6 +19,9 @@ namespace Assets.Source.Scripts.Utility
 
         [SerializeField] private FogPointLight fogPoint;
         [SerializeField] private FogVoid fogVoid;
+        [SerializeField] private float fogVoidKoefMin = 0.5f;
+        private Vector3 fogVoidScaleStart;
+
         [SerializeField] private VolumetricFog fog;
 
         [SerializeField] private AudioSource audioSource;
@@ -28,6 +31,8 @@ namespace Assets.Source.Scripts.Utility
         public bool isDisabled = false;
 
         public bool IsRecharge = false;
+
+        public float IntensityKoef { get; private set; }
 
         [SerializeField] private float rechargeTime = 1f;
         private float rechargeTimeout;
@@ -50,6 +55,7 @@ namespace Assets.Source.Scripts.Utility
 
             fogPoint = GetComponent<FogPointLight>();
             fogVoid = GetComponentInChildren<FogVoid>();
+            fogVoidScaleStart = fogVoid.transform.localScale;
 
             audioSource = GetComponent<AudioSource>();
             audioVolumeStart = audioSource.volume;
@@ -62,8 +68,11 @@ namespace Assets.Source.Scripts.Utility
             falloff = fogVoid.falloff;
             falloffStart = fogVoid.falloff;
 
-            fogStrength = fog.settings.noiseStrength;
-            fogStrengthStart = fog.settings.noiseStrength;
+            if (fog != null)
+            {
+                fogStrength = fog.settings.noiseStrength;
+                fogStrengthStart = fog.settings.noiseStrength;
+            }
         }
 
         private void Update()
@@ -87,17 +96,23 @@ namespace Assets.Source.Scripts.Utility
             intensity = Mathf.Clamp(intensity, 0, intensityStart);
             light.intensity = intensity;
 
-            var intensityKoef = intensity / intensityStart;
+            IntensityKoef = intensity / intensityStart;
 
-            fogVoid.falloff = Mathf.Lerp(1, falloffStart, intensityKoef);
-            fog.settings.noiseStrength = Mathf.Lerp(fogStrengthStart, 0, intensityKoef);
+            fogVoid.falloff = Mathf.Lerp(1, falloffStart, IntensityKoef);
+            var scaleLerp = Mathf.Lerp(0.5f, 1, IntensityKoef);
+            fogVoid.transform.localScale = fogVoidScaleStart * scaleLerp;
 
-            audioSource.volume = Mathf.Lerp(audioVolumeStart, audioVolumeStart, intensityKoef);
+            if (fog != null)
+            {
+                fog.settings.noiseStrength = Mathf.Lerp(fogStrengthStart, 0, IntensityKoef);
+            }
+
+            audioSource.volume = Mathf.Lerp(audioVolumeStart, audioVolumeStart, IntensityKoef);
 
             if (IsRecharge)
             {
                 fillImage.enabled = true;
-                fillImage.fillAmount = intensityKoef;
+                fillImage.fillAmount = IntensityKoef;
             }
             else
             {
