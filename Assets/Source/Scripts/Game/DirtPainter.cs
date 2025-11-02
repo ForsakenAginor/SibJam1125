@@ -206,7 +206,7 @@ public class DirtPainter : MonoBehaviour
         {
             var randomRedish = 0f;// UnityEngine.Random.Range(0, 0.2f);
             var randomAlpha = UnityEngine.Random.Range(0.5f, 1f);
-            var gray = 0f;// UnityEngine.Random.Range(0.3f, 0.6f);
+            var gray = UnityEngine.Random.Range(0f, 0.3f);
 
             color = new Color(gray + randomRedish, gray, gray, randomAlpha);
 
