@@ -29,6 +29,8 @@ public class DirtPainter : MonoBehaviour
 
     public int pixelMinCount = 5;
 
+    public float lightKoef = 1f;
+
     private bool isDisabled = false;
 
     private Texture2D texture;

@@ -80,7 +80,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509b5bd0aa21d1b4cb6944565a006065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMask
-  light: {fileID: 1759692212165461441}
   flashlight: {fileID: 6194669630539206616}
 --- !u!114 &-243770839930460315
 MonoBehaviour:
@@ -713,7 +712,7 @@ MonoBehaviour:
   fog: {fileID: 0}
   audioSource: {fileID: 0}
   fillImage: {fileID: 0}
-  isDisabled: 1
+  isDisabled: 0
   IsRecharge: 0
   rechargeTime: 1
   audioVolumeStart: 0

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerMask : MonoBehaviour
 {
-    [SerializeField] private SwitchableElement light;
     [SerializeField] private Flashlight flashlight;
 
     private bool _isOn = false;
@@ -55,5 +54,7 @@ public class PlayerMask : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+
+       // DirtPainter.Instance.lightKoef = flashlight.ke
     }
 }
