@@ -7,6 +7,8 @@ using Zenject;
 public class InGameMenu : MonoBehaviour
 {
     [SerializeField] private SwitchableElement _settingsPanel;
+    [SerializeField] private SwitchableElement _buttonCanvas;
+
     [SerializeField] private Button _closeButton;
     [SerializeField] private Button _openButton;
     [SerializeField] private Slider _sensXSlider;
@@ -66,6 +68,7 @@ public class InGameMenu : MonoBehaviour
     private void Open()
     {
         _settingsPanel.Enable();
+        _buttonCanvas.Disable();
         Time.timeScale = 0f;
         _input.ToMenuState();
         _isOpen = true;
@@ -73,6 +76,7 @@ public class InGameMenu : MonoBehaviour
 
     private void Close()
     {
+        _buttonCanvas.Enable();
         _settingsPanel.Disable();
         Time.timeScale = 1.0f;
         _input.ToWorldState();

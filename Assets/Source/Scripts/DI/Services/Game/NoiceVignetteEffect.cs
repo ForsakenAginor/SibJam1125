@@ -41,13 +41,24 @@ namespace Assets.Source.Scripts.DI.Services.Game
 
         public void Enable()
         {
+            _radiusTweener?.Kill();
+            _softnessTweener?.Kill();
+            _colorTweener?.Kill();
+
             _material.SetFloat(RadiusParameter, MaxRadius);
             _material.SetFloat(SoftnessParameter, MaxSoftness);
+            _material.SetColor(ColorParameter, Color.red);
             _feature.SetActive(true);
         }
 
         public void Disable()
         {
+            _radiusTweener?.Kill();
+            _softnessTweener?.Kill();
+            _colorTweener?.Kill();
+            _material.SetFloat(RadiusParameter, MaxRadius);
+            _material.SetFloat(SoftnessParameter, MaxSoftness);
+            _material.SetColor(ColorParameter, Color.red);
             _feature.SetActive(false);
         }
 

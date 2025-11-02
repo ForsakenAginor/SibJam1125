@@ -21,6 +21,8 @@ public interface IInputStateManager
     public void ToMenuState();
 
     public void ToWorldState();
+
+    public void ToFinishState();
 }
 
 public class InputProvider : IPlayerInput, IInputStateManager
@@ -74,6 +76,7 @@ public class InputProvider : IPlayerInput, IInputStateManager
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         _inputActions.Player.Enable();
+        _inputActions.Menu.Enable();
     }
 
     public void ToMenuState()
@@ -81,6 +84,15 @@ public class InputProvider : IPlayerInput, IInputStateManager
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         _inputActions.Player.Disable();
+        _inputActions.Menu.Enable();
+    }
+
+    public void ToFinishState()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        _inputActions.Player.Disable();
+        _inputActions.Menu.Disable();
     }
 
     private void OnEscPerformed(InputAction.CallbackContext context)

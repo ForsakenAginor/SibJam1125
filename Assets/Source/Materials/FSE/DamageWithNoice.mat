@@ -40,9 +40,9 @@ Material:
     - _NoiseDensity: 5
     - _NoisePower: 5
     - _NoiseSpeed: 2
-    - _Radius: 0.775
-    - _Softness: 0.695
+    - _Radius: 0.8
+    - _Softness: 0.7
     m_Colors:
-    - _Color: {r: 1, g: 0.050000012, b: 0.050000012, a: 1}
+    - _Color: {r: 1, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

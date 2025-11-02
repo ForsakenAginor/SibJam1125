@@ -47,6 +47,13 @@ namespace Assets.Source.Scripts.Utility
 
             _amount -= amount;
             ResourcesAmountChanged?.Invoke();
+
+            if (_amount <= 0)
+            {
+                _amount = 0;
+                ResourceOver?.Invoke();
+            }
+
             return true;
         }
 

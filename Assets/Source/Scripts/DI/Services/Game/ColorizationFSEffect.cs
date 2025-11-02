@@ -37,6 +37,7 @@ namespace Assets.Source.Scripts.DI.Services.Game
 
         public void Disable()
         {
+            _material.SetFloat(BlendParameter, MaxColorize);
             _feature.SetActive(false);
         }
 

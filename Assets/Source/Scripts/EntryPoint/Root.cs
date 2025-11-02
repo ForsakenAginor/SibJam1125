@@ -3,6 +3,7 @@ using Assets.Source.Scripts.DI.Services.Boot;
 using Assets.Source.Scripts.DI.Services.Game;
 using Assets.Source.Scripts.General;
 using Assets.Source.Scripts.SaveSystem;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,8 @@ namespace Assets.Source.Scripts.EntryPoint
         [Header("Other")]
         [SerializeField] private AudioSaveLoadService _soundInitializer;
         [SerializeField] private Button _closeButton;
+        [SerializeField] private Button _restartButton;
+
         private ISceneChanger _sceneChanger;
         private SaveDataProvider _saveDataProvider;
         private List<IDataSaveLoadService> _saveLoadServices = new();
@@ -24,13 +27,15 @@ namespace Assets.Source.Scripts.EntryPoint
 
         [Inject]
         public void Construct(ISceneChanger sceneChanger, SaveDataProvider saveDataProvider, HealthVignetteEffect healthVignette, NoiceVignetteEffect noiceVignette,
-            IColorizationFSEffect colorizationFSEffect)
+            IColorizationFSEffect colorizationFSEffect, IInputStateManager input)
         {
             _sceneChanger = sceneChanger;
             _saveDataProvider = saveDataProvider;
             _healthVignette = healthVignette;
             _noiceVignette = noiceVignette;
             _colorizationFSEffect = colorizationFSEffect;
+
+            input.ToWorldState();
 
             _colorizationFSEffect.Enable();
             _healthVignette.Enable();
@@ -43,6 +48,7 @@ namespace Assets.Source.Scripts.EntryPoint
             LoadData();
 
             _closeButton.onClick.AddListener(OnCloseButtonClick);
+            _restartButton.onClick.AddListener(OnRestartButtonClick);
             _sceneChanger.FadeOut();
             Time.timeScale = 1f;
         }
@@ -53,7 +59,9 @@ namespace Assets.Source.Scripts.EntryPoint
             _healthVignette.Disable();
             _noiceVignette.Disable();
             _closeButton.onClick.RemoveListener(OnCloseButtonClick);
+            _restartButton.onClick.RemoveListener(OnRestartButtonClick);
         }
+
 
         private void SaveData()
         {
@@ -78,10 +86,16 @@ namespace Assets.Source.Scripts.EntryPoint
             }
         }
 
+        private void OnRestartButtonClick()
+        {
+            SaveData();
+            _sceneChanger.LoadSceneIgnoreTimeScale(Scenes.Game.ToString());
+        }
+
         private void OnCloseButtonClick()
         {
             SaveData();
-            _sceneChanger.LoadScene(Scenes.Menu.ToString());
+            _sceneChanger.LoadSceneIgnoreTimeScale(Scenes.Menu.ToString());
         }
     }
 }
