@@ -17,6 +17,7 @@ namespace Assets.Source.Scripts.EntryPoint
         [SerializeField] private AudioSaveLoadService _soundInitializer;
         [SerializeField] private Button _closeButton;
         [SerializeField] private Button _restartButton;
+        [SerializeField] private InGameMenu _gameMenu;
 
         private ISceneChanger _sceneChanger;
         private SaveDataProvider _saveDataProvider;
@@ -45,6 +46,8 @@ namespace Assets.Source.Scripts.EntryPoint
 
         private void Start()
         {
+            SensitivitySaveLoadService sensitivitySaveLoadService = new SensitivitySaveLoadService(_gameMenu);
+            _saveLoadServices.Add(sensitivitySaveLoadService);
             LoadData();
 
             _closeButton.onClick.AddListener(OnCloseButtonClick);
