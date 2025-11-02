@@ -33,6 +33,8 @@ public class DirtPainter : MonoBehaviour
 
     private bool isDisabled = false;
 
+    private float delay = 5f;
+
     private Texture2D texture;
     Color[] pixels;
 
@@ -41,8 +43,8 @@ public class DirtPainter : MonoBehaviour
     public CleanPoint[] cleanPoints;
 
     public int startX;
-    public int startY;
     public int endX;
+    public int startY;
     public int endY;
 
     public static DirtPainter Instance;
@@ -90,6 +92,7 @@ public class DirtPainter : MonoBehaviour
                 texture.SetPixel(x, y, new Color(0, 1, 0, 1));
             }
         }
+        texture.Apply();
     }
 
     void Update()
@@ -99,7 +102,13 @@ public class DirtPainter : MonoBehaviour
             return;
         }
 
-        Fade();
+        if (delay >= 0)
+        {
+            delay -= Time.deltaTime;
+            return;
+        }
+
+        Fade3();
 
         if (isCleaning)
         {
@@ -107,6 +116,29 @@ public class DirtPainter : MonoBehaviour
         }
 
         texture.Apply();
+    }
+
+    public int textureWidth = 256;
+    public int textureHeight = 256;
+    public float scale = 20f; // Adjust for noise frequency
+    public float offsetX = 0f;
+    public float offsetY = 0f;
+    private Texture2D GenerateNoiseTexture()
+    {
+        Texture2D texture = new Texture2D(textureWidth, textureHeight);
+        for (int x = 0; x < textureWidth; x++)
+        {
+            for (int y = 0; y < textureHeight; y++)
+            {
+                float xCoord = (float)x / textureWidth * scale + offsetX;
+                float yCoord = (float)y / textureHeight * scale + offsetY;
+                float sample = Mathf.PerlinNoise(xCoord, yCoord);
+                Color color = new Color(sample, sample, sample);
+                texture.SetPixel(x, y, color);
+            }
+        }
+        texture.Apply();
+        return texture;
     }
 
     void Fade()
@@ -144,6 +176,96 @@ public class DirtPainter : MonoBehaviour
             }
             texture.SetPixel(randomX, randomY, color);
         }
+    }
+
+    void Fade3()
+    {
+        var speed = player.velocity.magnitude;
+
+        var alpha = 0.5f;
+
+        var color = new Color(0, 0, 0, alpha);
+        var pixelCount = Mathf.CeilToInt(speed * pixelMultiplicatorCount);
+        if (pixelCount < pixelMinCount)
+        {
+            pixelCount = pixelMinCount;
+        }
+
+        // pixelCount = Mathf.Clamp(pixelCount, 0, pixelMultiplicatorCount);
+        var xSize = endX - startX;
+        var ySize = endY - startY;
+
+        print(pixelCount);
+        var pixelCountSpent = 0;
+
+        var lerp = Mathf.Lerp(0.01f, 0.2f, pixelCount / pixelMinCount);
+        for (int i = 0; i < pixelCount*1000; i++)
+        {
+            var randomRedish = 0f;// UnityEngine.Random.Range(0, 0.2f);
+            var randomAlpha = UnityEngine.Random.Range(0.5f, 1f);
+            var gray = 0f;// UnityEngine.Random.Range(0.3f, 0.6f);
+
+            color = new Color(gray + randomRedish, gray, gray, randomAlpha);
+
+            var randomX = UnityEngine.Random.Range(startX, endX + 1);
+            var randomY = UnityEngine.Random.Range(startY, endY + 1);
+
+            var additional = UnityEngine.Random.Range(1, 9);
+
+            for (int x = -1; x < 2; x++)
+            {
+                for (int y = -1; y < 2; y++)
+                {
+                    if (UnityEngine.Random.value < 0.25f)
+                    {
+                        var pix = texture.GetPixel(randomX + x, randomY + y);
+                        if (pix.a > 0.4f)
+                        {
+                            color.a = 1f;
+                        }
+
+                        texture.SetPixel(randomX + x, randomY + y, color);
+                        pixelCountSpent++;
+
+                        if (pixelCountSpent >= pixelCount)
+                        {
+                            return;
+                        }
+                    }
+                }
+                //if (UnityEngine.Random.value < 1 /)
+            }
+        }
+    }
+
+    public float fade2_threshold = 0.1f;
+    public float fade2_aMin = 0.1f;
+    public float fade2_aMax = 0.2f;
+
+
+    void Fade2()
+    {
+        var speed = player.velocity.magnitude;
+
+        int newNoise = UnityEngine.Random.Range(0, 10000);
+        for (int y = startY; y < endY; y++)
+        {
+            for (int x = startX; x < endX; x++)
+            {
+                float xCoord = (float)x / textureWidth * scale + newNoise;
+                float yCoord = (float)y / textureHeight * scale + newNoise;
+                float sample = Mathf.PerlinNoise(xCoord, yCoord);
+                if (sample < fade2_threshold)
+                {
+                    var pix = texture.GetPixel(x, y);
+                    var randomAlpha = UnityEngine.Random.Range(fade2_aMin, fade2_aMax);
+                    var color = new Color(sample, sample, sample, pix.a + randomAlpha);
+                    //texture.SetPixel(x, y, color);
+                    texture.SetPixel(x, y, color);
+                }
+            }
+        }
+
     }
 
 

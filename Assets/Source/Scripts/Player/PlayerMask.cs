@@ -55,6 +55,6 @@ public class PlayerMask : MonoBehaviour
             Cursor.visible = true;
         }
 
-       // DirtPainter.Instance.lightKoef = flashlight.ke
+        DirtPainter.Instance.lightKoef = flashlight.IntensityKoef;
     }
 }
