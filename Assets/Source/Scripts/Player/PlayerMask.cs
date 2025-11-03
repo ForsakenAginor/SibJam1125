@@ -41,7 +41,12 @@ public class PlayerMask : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
         {
-            DirtPainter.Instance.FillAll_Test();
+            //DirtPainter.Instance.FillAll_Test();
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            DirtPainter.Instance.AddComplexStains();
         }
 
         if (Input.GetKeyDown(KeyCode.C))

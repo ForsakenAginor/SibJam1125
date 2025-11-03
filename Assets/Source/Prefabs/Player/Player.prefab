@@ -113,7 +113,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -1413013183305548636, guid: 910ff1f97dc66624f92984c312dd4cef, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 5ef2940070e463a4c9e8604406fb436c, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::VolumetricFogAndMist2.FogVoid
   roundness: 0.5
-  falloff: 0.8
+  falloff: 1
 --- !u!1 &7875583410609455455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,12 +1039,40 @@ PrefabInstance:
     m_TransformParent: {fileID: 8355029042853891807}
     m_Modifications:
     - target: {fileID: 3131457874588883936, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
+      propertyPath: m_Range
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3131457874588883936, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6462264
+      objectReference: {fileID: 0}
+    - target: {fileID: 3131457874588883936, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
+      propertyPath: m_Color.g
+      value: 0.93217814
+      objectReference: {fileID: 0}
+    - target: {fileID: 3131457874588883936, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3131457874588883936, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_Intensity
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3131457874588883936, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_SpotAngle
-      value: 100
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3131457874588883936, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3131457874588883936, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
+      propertyPath: m_ColorTemperature
+      value: 4000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3131457874588883936, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4450984810774093697, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_Name
@@ -1068,11 +1096,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4636838763157103958, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.79999965
       objectReference: {fileID: 0}
     - target: {fileID: 4636838763157103958, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.02600038
       objectReference: {fileID: 0}
     - target: {fileID: 4636838763157103958, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1080,27 +1108,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4636838763157103958, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9848078
+      value: 0.9977928
       objectReference: {fileID: 0}
     - target: {fileID: 4636838763157103958, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.17364825
+      value: -0.061027683
       objectReference: {fileID: 0}
     - target: {fileID: 4636838763157103958, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.026128098
       objectReference: {fileID: 0}
     - target: {fileID: 4636838763157103958, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.0015980646
       objectReference: {fileID: 0}
     - target: {fileID: 4636838763157103958, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -20
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 4636838763157103958, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4636838763157103958, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1175,12 +1203,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Source.Scripts.Utility.Flashlight
   light: {fileID: 8368484929007136761}
-  fadeSpeed: 3
-  rechargeSpeedMax: 10
-  rechargeIncreaseSpeed: 2
+  fadeSpeed: 2
+  rechargeSpeedMax: 20
+  rechargeIncreaseSpeed: 10
   fogPoint: {fileID: 6856436502741269187}
   fogVoid: {fileID: 2681201575851832293}
-  fogVoidKoefMin: 0.5
+  fogVoidKoefMin: 0.75
   fog: {fileID: 0}
   audioSource: {fileID: 0}
   fillImage: {fileID: 0}

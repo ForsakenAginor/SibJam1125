@@ -1,7 +1,8 @@
-﻿using Assets.Source.Scripts.Game;
-using System;
+﻿using System;
 using System.Linq;
 using UnityEngine;
+using Color = UnityEngine.Color;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class CleanPoint
@@ -33,7 +34,7 @@ public class DirtPainter : MonoBehaviour
 
     private bool isDisabled = false;
 
-    private float delay = 5f;
+    private float delay = 1f;
 
     private Texture2D texture;
     Color[] pixels;
@@ -202,7 +203,7 @@ public class DirtPainter : MonoBehaviour
         var pixelCountSpent = 0;
 
         var lerp = Mathf.Lerp(0.01f, 0.2f, pixelCount / pixelMinCount);
-        for (int i = 0; i < pixelCount*1000; i++)
+        for (int i = 0; i < pixelCount * 1000; i++)
         {
             var randomRedish = 0f;// UnityEngine.Random.Range(0, 0.2f);
             var randomAlpha = UnityEngine.Random.Range(0.5f, 1f);
@@ -237,6 +238,111 @@ public class DirtPainter : MonoBehaviour
                     }
                 }
                 //if (UnityEngine.Random.value < 1 /)
+            }
+        }
+    }
+
+    public void AddComplexStains()
+    {
+        var stainCount = Random.Range(5, 10);
+        AddComplexStains(stainCount);
+    }
+
+    private void AddComplexStains(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            AddComplexStain();
+        }
+    }
+
+    private void AddStains(int count)
+    {
+        //var stainCount = Random.Range(2, 5);
+        /*for (int i = 0; i< stainCount; i++)
+        {
+            var randomX = Random.Range(startX, endX + 1);
+            var randomY = Random.Range(startY, endY + 1);
+        }*/
+
+        var stainRadius = Random.Range(10, 20);
+        var randomX = Random.Range(startX, endX + 1);
+        var randomY = Random.Range(startY, endY + 1);
+
+        AddStain(stainRadius, randomX, randomY);
+    }
+
+    private void AddStains()
+    {
+        //var stainCount = Random.Range(2, 5);
+        /*for (int i = 0; i< stainCount; i++)
+        {
+            var randomX = Random.Range(startX, endX + 1);
+            var randomY = Random.Range(startY, endY + 1);
+        }*/
+
+        var stainRadius = Random.Range(10, 20);
+        var randomX = Random.Range(startX, endX + 1);
+        var randomY = Random.Range(startY, endY + 1);
+
+        AddStain(stainRadius, randomX, randomY);
+    }
+
+    private void AddComplexStain()
+    {
+        //var stainCount = Random.Range(2, 5);
+        /*for (int i = 0; i< stainCount; i++)
+        {
+            var randomX = Random.Range(startX, endX + 1);
+            var randomY = Random.Range(startY, endY + 1);
+        }*/
+
+        // var stainRadius = Random.Range(10, 20);
+        var stainRadius = Random.Range(15, 20);
+        var randomX = Random.Range(startX, endX + 1);
+        var randomY = Random.Range(startY, endY + 1);
+
+        //AddStain(stainRadius, randomX, randomY);
+
+        var additional = Random.Range(5, 8);
+        for (int i = 0; i < additional; i++)
+        {
+            var position = Random.insideUnitCircle * stainRadius /** Random.Range(0.9f, 1.2f)*/;
+            var posX = Mathf.RoundToInt(position.x) + randomX;
+            var posY = Mathf.RoundToInt(position.y) + randomY;
+
+            var stainRadiusSmall = Mathf.RoundToInt(stainRadius * Random.Range(0.3f, 0.5f));
+            AddStain(stainRadiusSmall, posX, posY);
+        }
+    }
+
+    private void AddStain(int stainRadius, int randomX, int randomY)
+    {
+        //var
+
+        for (int x = randomX - stainRadius; x <= randomX + stainRadius; x++)
+        {
+            for (int y = randomY - stainRadius; y < randomY + stainRadius; y++)
+            {
+                int dx = x - randomX;
+                int dy = y - randomY;
+
+                bool isInCentralCircle = dx * dx + dy * dy <= stainRadius * stainRadius;
+                if (isInCentralCircle)
+                {
+                    var randomRedish = 0f;// UnityEngine.Random.Range(0, 0.2f);
+                    var randomAlpha = Random.Range(0.5f, 0.8f);
+                    var gray = Random.Range(0f, 0.3f);
+
+                    var color = new Color(gray + randomRedish, gray, gray, randomAlpha);
+
+                    var pix = texture.GetPixel(randomX + x, randomY + y);
+                    if (pix.a > 0.4f)
+                    {
+                        color.a = 1f;
+                    }
+                    texture.SetPixel(x, y, color);
+                }
             }
         }
     }
