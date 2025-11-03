@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 _maskOffset = new Vector3(0, -0.5f, 0.28f);
     private Vector3 _radarOffset = new Vector3(0, -0.5f, 0.29f);
-    public AudioSource StepsAudioSource;
+    public AudioSource StepsNormAudioSource, StepsRunningAudioSource;
     private Vector3 lastPosition;
 
     [Header("Movement Settings")]
@@ -75,26 +75,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         HandleMovement();
-        // Check if the player has moved since the last frame
-        if (transform.position != lastPosition)
-        {
-            // If the player is moving and the sound is not already playing, play the sound
-            if (!StepsAudioSource.isPlaying)
-            {
-                StepsAudioSource.Play();
-            }
-        }
-        else
-        {
-            // If the player is not moving, stop the sound
-            if (StepsAudioSource.isPlaying)
-            {
-                StepsAudioSource.Stop();
-            }
-        }
-
-        // Update last position for the next frame
-        lastPosition = transform.position;
     }
 
     public void SetXSens(float x) => horizontalSensitivity = x;
@@ -125,6 +105,38 @@ public class PlayerController : MonoBehaviour
         // Гравитация
         _velocity.y += gravity * Time.deltaTime;
         _characterController.Move(_velocity * Time.deltaTime);
+
+        // Check if the player has moved since the last frame
+        if (transform.position != lastPosition)
+        {
+            // If the player is moving and the sound is not already playing, play the sound
+            if (!StepsNormAudioSource.isPlaying && !StepsRunningAudioSource.isPlaying)
+            {
+                if (_input.IsSprinted)
+                {
+                    StepsRunningAudioSource.Play();
+                }
+                else
+                {
+                    StepsNormAudioSource.Play();
+                }
+            }
+        }
+        else
+        {
+            // If the player is not moving, stop the sound
+            if (StepsNormAudioSource.isPlaying)
+            {
+                StepsNormAudioSource.Stop();
+            }
+            else if (StepsRunningAudioSource.isPlaying)
+            {
+                StepsRunningAudioSource.Stop();
+            }
+        }
+
+        // Update last position for the next frame
+        lastPosition = transform.position;
     }
 
     private void OnJump()
