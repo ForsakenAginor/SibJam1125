@@ -38,6 +38,39 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-8373684490844287262
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 8441af272f68dd34f984c9248ffdd0f9
+  m_EffectName: Attenuation
+  m_MixLevel: 44553ebe17f08d041bb1dabd5819db99
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &-8186251836195479935
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: OxyRollback
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 7812ed1ba0048c543b45f0733797e441
+  m_Children: []
+  m_Volume: f2efd173539ecb34484f405405bfa839
+  m_Pitch: 47bf21b88075a454c83731768636c6d9
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -8373684490844287262}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &-6688138948703914501
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -218,6 +251,7 @@ AudioMixerGroupController:
   - {fileID: 8625578418067521603}
   - {fileID: 5927950089420607978}
   - {fileID: 8378127958318983309}
+  - {fileID: -8186251836195479935}
   m_Volume: 253c33ff574efbb4fa468976273ed52b
   m_Pitch: 851e2fee8ecaef24687fdb0734875d6b
   m_Send: 00000000000000000000000000000000
@@ -300,6 +334,7 @@ AudioMixerController:
     - 1bd8c3e913a3e6d4aaaf85f5bfe110eb
     - aaa27c8a26a6687408dd3e64d808d7b5
     - 79884264a2468a447bdb5783e99534c6
+    - 7812ed1ba0048c543b45f0733797e441
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -348,6 +383,7 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 84bad4889fbc7604889441e091d7bab8
   m_FloatValues:
+    f2efd173539ecb34484f405405bfa839: -7.801756
     5e830a733fab1f140b5e629129064b74: 0
     1c8927a6e6c93a8418be8c9acce723db: 0.44032478
     dbc9844863a0b534a963528bd7f59c9f: -4.486762
