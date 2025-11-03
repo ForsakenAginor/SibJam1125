@@ -41,6 +41,7 @@ public class SpiderNavigator : MonoBehaviour
         _audioPlayer.PlaySpiderAttack(transform);
         yield return _delay;
         _playerDamageTaker.TakeDamage();
+        _audioPlayer.PlayTakeDamage();
     }
 
     public bool CanSeePlayer()

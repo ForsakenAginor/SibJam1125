@@ -19,6 +19,8 @@ namespace Assets.Source.Scripts.DI.Services.Game
         [SerializeField] private AudioSource _oxyRollback;
         [SerializeField] private AudioSource _spiderAttack;
         [SerializeField] private AudioSource _spiderFlee;
+        [SerializeField] private AudioSource _takeDamage;
+        [SerializeField] private AudioSource _cleanScreen;
 
         private void Awake()
         {
@@ -30,6 +32,16 @@ namespace Assets.Source.Scripts.DI.Services.Game
                 _audioSources.Enqueue(_audioSourcesArray[i]);
                 _cachedWaitWhiles.Add(_audioSourcesArray[i], new WaitWhileCached(() => false));
             }
+        }
+
+        public void PlayCleanScreen()
+        {
+            _cleanScreen.Play();
+        }
+
+        public void PlayTakeDamage()
+        {
+            _takeDamage.Play();
         }
 
         public void PlayOxyRecharge()

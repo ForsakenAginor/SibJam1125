@@ -40,7 +40,7 @@ namespace Assets.Source.Scripts.EntryPoint
 
             //_colorizationFSEffect.Enable();
             _healthVignette.Enable();
-            _noiceVignette.Enable();
+            //_noiceVignette.Enable();
             _saveLoadServices.Add(_soundInitializer);
         }
 

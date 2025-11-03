@@ -1,3 +1,4 @@
+using Assets.Source.Scripts.DI.Services.Game;
 using Assets.Source.Scripts.Utility;
 using System;
 using UnityEngine;
@@ -8,11 +9,13 @@ public class PlayerMask : MonoBehaviour
     [SerializeField] private Flashlight flashlight;
 
     private IPlayerInput _input;
+    private AudioPlayer _player;
 
     [Inject]
-    public void Construct(IPlayerInput input)
+    public void Construct(IPlayerInput input, AudioPlayer audioPlayer)
     {
         _input = input;
+        _player = audioPlayer;
 
         _input.OnClean += OnClean;
     }
@@ -24,6 +27,7 @@ public class PlayerMask : MonoBehaviour
 
     private void OnClean()
     {
+        _player.PlayCleanScreen();
         DirtPainter.Instance.StartClean();
     }
 
