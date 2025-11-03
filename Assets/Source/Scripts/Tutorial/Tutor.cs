@@ -10,6 +10,7 @@ public class Tutor : MonoBehaviour
     [SerializeField] private SwitchableElement _cleanKey;
     [SerializeField] private FlashlightObject _flashlightObject;
     [SerializeField] private SwitchableElement _flashlightIcon;
+    [SerializeField] private SwitchableElement _pickupFlashlightText;
 
     private CharacterController _characterController;
     private Flashlight _flashlight;
@@ -54,6 +55,7 @@ public class Tutor : MonoBehaviour
     {
         _flashlight.Enable();
         _flashlightIcon.Enable();
+        _pickupFlashlightText.Disable();
     }
 
     private void CreateCleenTween()
@@ -71,6 +73,8 @@ public class Tutor : MonoBehaviour
             newHeight => _characterController.height = newHeight,
             2,
             1f).SetEase(Ease.Linear);
+
+        _pickupFlashlightText.Enable();
     }
 
     private void OnOxygenRestored()
