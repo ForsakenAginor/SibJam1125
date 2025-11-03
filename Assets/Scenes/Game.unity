@@ -183,6 +183,43 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!84 &63086345
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 256
+  m_Height: 256
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 0
+  m_ColorFormat: 8
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 0
+    m_WrapV: 0
+    m_WrapW: 0
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1 &193968460
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +488,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailTex:
-        m_Texture: {fileID: 1965727890}
+        m_Texture: {fileID: 1949708778}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FogOfWar:
@@ -467,7 +504,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTex:
-        m_Texture: {fileID: 717960646}
+        m_Texture: {fileID: 63086345}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -491,7 +528,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DetailColor: {r: 0.13561322, g: 0.12601794, b: 0.12601794, a: 0}
     - _DetailData: {r: 0.55, g: -0.6, b: 0.005, a: 1}
-    - _DetailWindDirection: {r: 0.41038743, g: 0.41038743, b: 0, a: 0}
+    - _DetailWindDirection: {r: 0.0149576785, g: 0.0149576785, b: 0, a: 0}
     - _DistanceData: {r: 0, g: 0.70000017, b: 0.000004, a: 0.000006800001}
     - _FogOfWarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _FogOfWarCenterAdjusted: {r: 0, g: 0, b: 0, a: 1}
@@ -503,46 +540,9 @@ Material:
     - _ShadowData: {r: 0.5, g: 0, b: 250, a: 0}
     - _SpecularColor: {r: 0.5, g: 0.5, b: 0.5, a: 0}
     - _SunDir: {r: 0.70710677, g: 0.70710677, b: 0, a: 0}
-    - _WindDirection: {r: -0.82077485, g: 0, b: 0, a: 0}
+    - _WindDirection: {r: -0.029915357, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!84 &717960646
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 256
-  m_Height: 256
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 0
-  m_ColorFormat: 8
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 0
-    m_WrapV: 0
-    m_WrapW: 0
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,7 +891,7 @@ Transform:
   - {fileID: 637641649}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!117 &1965727890
+--- !u!117 &1949708778
 Texture3D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -974,6 +974,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 69.9
       objectReference: {fileID: 0}
+    - target: {fileID: 3976940193668285452, guid: d341fdca5f411e3418ad6f9c0656067b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1da283ae429025848ba723d6372eaa2c, type: 3}
     - target: {fileID: 4296371351246763470, guid: d341fdca5f411e3418ad6f9c0656067b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -178.13054
