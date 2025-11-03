@@ -32,6 +32,8 @@ namespace Assets.Source.Scripts.Utility
 
         public bool IsRecharge = false;
 
+        public bool IsWorking => intensity > intensityStart * 0.5f;
+
         public float IntensityKoef { get; private set; }
 
         [SerializeField] private float rechargeTime = 1f;
