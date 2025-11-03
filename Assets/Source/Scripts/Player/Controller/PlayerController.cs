@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 _maskOffset = new Vector3(0, -0.5f, 0.28f);
     private Vector3 _radarOffset = new Vector3(0, -0.5f, 0.29f);
     public AudioSource StepsAudioSource;
+    public AudioSource SprintAudioSource;
     private Vector3 lastPosition;
 
     [Header("Movement Settings")]
@@ -124,11 +125,13 @@ public class PlayerController : MonoBehaviour
 
         if (_input.IsSprinted)
         {
-            StepsAudioSource.pitch = sprintSpeed / walkSpeed;
+            StepsAudioSource.enabled = false;
+            SprintAudioSource.enabled = true;
         }
         else
         {
-            StepsAudioSource.pitch = 1;
+            StepsAudioSource.enabled = true;
+            SprintAudioSource.enabled = false;
         }
 
         // Применение движения
