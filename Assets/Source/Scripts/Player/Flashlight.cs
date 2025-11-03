@@ -54,6 +54,12 @@ namespace Assets.Source.Scripts.Utility
 
         private void Start()
         {
+            isDisabled = true;
+            Disable();
+        }
+
+        public void Init()
+        {
             fog = FindFirstObjectByType<VolumetricFog>();
 
             fogPoint = GetComponent<FogPointLight>();

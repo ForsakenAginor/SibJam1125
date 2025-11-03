@@ -1,5 +1,6 @@
 using Assets.Source.Scripts.Utility;
 using DG.Tweening;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -8,7 +9,9 @@ public class Tutor : MonoBehaviour
     [SerializeField] private OxygenDrainTrigger _oxygenDrainTrigger;
     [SerializeField] private SwitchableElement _cleanKey;
     [SerializeField] private CharacterController _characterController;
+    [SerializeField] private FlashlightObject _flashlightObject;
 
+    private Flashlight _flashlight;
     private PlayerOxygenManager _oxygenManager;
     private IPlayerInput _playerInput;
     private IInputStateManager _inputStateManager;
@@ -22,6 +25,7 @@ public class Tutor : MonoBehaviour
         _playerInput = playerInput;
         _inputStateManager = inputStateManager;
         _characterController = playerFacade.Colider;
+        _flashlight = playerFacade.Flashlight;
 
         _playerInput.OnClean += OnClean;
     }
@@ -29,6 +33,7 @@ public class Tutor : MonoBehaviour
     private void OnDestroy()
     {
         _playerInput.OnClean -= OnClean;
+        _flashlightObject.Pickuped -= OnPickuped;
         _oxygenManager.OxygenRestored -= OnOxygenRestored;
         _oxygenDrainTrigger.PlayerEnter -= OnOxygenRestored;
     }
@@ -36,10 +41,17 @@ public class Tutor : MonoBehaviour
     public void Init(PlayerOxygenManager oxygenManager)
     {
         _oxygenManager = oxygenManager;
+        _flashlight.Init();
         CreateCleenTween();
 
+        _flashlightObject.Pickuped += OnPickuped;
         _oxygenManager.OxygenRestored += OnOxygenRestored;
         _oxygenDrainTrigger.PlayerEnter += OnOxygenRestored;
+    }
+
+    private void OnPickuped()
+    {
+        _flashlight.Enable();
     }
 
     private void CreateCleenTween()
