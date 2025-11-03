@@ -44,6 +44,7 @@ public class PlayerInteractor : MonoBehaviour, IPlayerInteractor
         _canInteract = false;
         _interactable = null;
         UnsubscribeFromInputEvents();
+        OnInteractCanceled();
         _tooltip.Disable();
     }
 

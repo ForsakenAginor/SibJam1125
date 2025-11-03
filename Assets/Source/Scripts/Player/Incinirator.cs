@@ -9,7 +9,7 @@ namespace Assets.Source.Scripts.Utility
         [SerializeField] private LayerMask _ignoringLayer;
         [SerializeField] private float _frequency = 0.25f;
         [SerializeField] private float _radius = 0.5f;
-        [SerializeField] private float _distance = 4;
+        [SerializeField] private float _distance = 2.5f;
 
         private float _aggregator = 0;
 

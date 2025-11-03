@@ -9,6 +9,7 @@ public class PlayerFacade : MonoBehaviour
     [SerializeField] private PlayerController _characterController;
     [SerializeField] private PlayerSensitivityChanger _sensitivityChanger;
     [SerializeField] private PlayerDamageTaker _damageTaker;
+    [SerializeField] private BreathSwitcher _breathSwitcher;
 
     private PlayerOxygenManager _oxygenManager;
     private IZenjectInstantiateWrapper _instantiateWrapper;
@@ -19,6 +20,7 @@ public class PlayerFacade : MonoBehaviour
         _instantiateWrapper = instantiateWrapper;
         _oxygenManager = _instantiateWrapper.Create<PlayerOxygenManager>();
         OxygenFSEffectsAdapter oxygenFSEffectsAdapter = new OxygenFSEffectsAdapter(noiseVignetteEffect, colorizationFSEffect ,_oxygenManager.Oxigen);
+        _breathSwitcher.Init(_oxygenManager.Oxigen);
     }
 
     public PlayerSensitivityChanger SensitivityChanger => _sensitivityChanger;
