@@ -7,6 +7,7 @@ public class PlayerDamageTaker : MonoBehaviour
 
     public void TakeDamage()
     {
+        _flashlight.StrongFade();
         DirtPainter.Instance.AddComplexStains();
     }
 }
