@@ -1,3 +1,5 @@
+using Assets.Source.Scripts.DI.Services.Game;
+using NUnit.Framework.Internal;
 using Sirenix.OdinInspector;
 using System.Collections;
 using TMPro;
@@ -11,6 +13,7 @@ public class SpiderNavigator : MonoBehaviour
 
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private LayerMask _ignoringLayers;
+    [SerializeField] private SpiderAttackParticles _effect;
 
     [SerializeField] private float _normalSpeed = 3.5f;
     [SerializeField] private float _fleeSpeed = 10f;
@@ -20,17 +23,24 @@ public class SpiderNavigator : MonoBehaviour
     [SerializeField] private Transform _rayOrigin;
     [SerializeField] private float _attackDistance = 4f;
     private IPlayerTransform _player;
+    private AudioPlayer _audioPlayer;
+    private PlayerDamageTaker _playerDamageTaker;
+    private WaitForSeconds _delay = new WaitForSeconds(0.5f);
 
     [Inject]
-    public void Construct(IPlayerTransform player)
+    public void Construct(IPlayerTransform player, AudioPlayer audioPlayer, PlayerFacade playerFacade)
     {
         _player = player;
+        _audioPlayer = audioPlayer;
+        _playerDamageTaker = playerFacade.DamageTaker;
     }
 
     public IEnumerator Attack()
     {
-        yield return null;
-        Debug.Log("Player atacked");
+        _effect.Play();
+        _audioPlayer.PlaySpiderAttack(transform);
+        yield return _delay;
+        _playerDamageTaker.TakeDamage();
     }
 
     public bool CanSeePlayer()

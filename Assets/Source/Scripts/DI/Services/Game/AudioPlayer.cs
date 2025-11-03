@@ -17,6 +17,8 @@ namespace Assets.Source.Scripts.DI.Services.Game
 
         [SerializeField] private AudioSource _oxyRecharge;
         [SerializeField] private AudioSource _oxyRollback;
+        [SerializeField] private AudioSource _spiderAttack;
+        [SerializeField] private AudioSource _spiderFlee;
 
         private void Awake()
         {
@@ -39,6 +41,20 @@ namespace Assets.Source.Scripts.DI.Services.Game
         {
             _oxyRecharge.Stop();
             _oxyRollback.Play();
+        }
+
+        public void PlaySpiderAttack(Transform spider)
+        {
+            _spiderAttack.transform.SetParent(spider);
+            _spiderAttack.transform.localPosition = Vector3.zero;
+            _spiderAttack.Play();
+        }
+
+        public void PlaySpiderFlee(Transform spider)
+        {
+            _spiderFlee.transform.SetParent(spider);
+            _spiderFlee.transform.localPosition = Vector3.zero;
+            _spiderFlee.Play();
         }
 
         private void PlaySound(AudioClip clip, float volumeMultiplier = 1f, bool isRandomPitch = false)

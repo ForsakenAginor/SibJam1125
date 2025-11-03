@@ -8,6 +8,7 @@ public class PlayerFacade : MonoBehaviour
 {
     [SerializeField] private PlayerController _characterController;
     [SerializeField] private PlayerSensitivityChanger _sensitivityChanger;
+    [SerializeField] private PlayerDamageTaker _damageTaker;
 
     private PlayerOxygenManager _oxygenManager;
     private IZenjectInstantiateWrapper _instantiateWrapper;
@@ -23,4 +24,6 @@ public class PlayerFacade : MonoBehaviour
     public PlayerSensitivityChanger SensitivityChanger => _sensitivityChanger;
 
     public PlayerOxygenManager Oxygen => _oxygenManager;
+
+    public PlayerDamageTaker DamageTaker => _damageTaker;
 }
