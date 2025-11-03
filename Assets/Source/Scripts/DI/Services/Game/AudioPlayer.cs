@@ -15,6 +15,9 @@ namespace Assets.Source.Scripts.DI.Services.Game
         private readonly Dictionary<AudioSource, WaitWhileCached> _cachedWaitWhiles = new Dictionary<AudioSource, WaitWhileCached>();
         [SerializeField] private AudioSource[] _audioSourcesArray;
 
+        [SerializeField] private AudioSource _oxyRecharge;
+        [SerializeField] private AudioSource _oxyRollback;
+
         private void Awake()
         {
             if (_audioSourcesArray.Length != _maxSimultaneousSounds)
@@ -25,6 +28,17 @@ namespace Assets.Source.Scripts.DI.Services.Game
                 _audioSources.Enqueue(_audioSourcesArray[i]);
                 _cachedWaitWhiles.Add(_audioSourcesArray[i], new WaitWhileCached(() => false));
             }
+        }
+
+        public void PlayOxyRecharge()
+        {
+            _oxyRecharge.Play();
+        }
+
+        public void PlayOxyRollback()
+        {
+            _oxyRecharge.Stop();
+            _oxyRollback.Play();
         }
 
         private void PlaySound(AudioClip clip, float volumeMultiplier = 1f, bool isRandomPitch = false)
