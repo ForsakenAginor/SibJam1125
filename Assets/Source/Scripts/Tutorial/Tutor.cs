@@ -7,6 +7,8 @@ public class Tutor : MonoBehaviour
 {
     [SerializeField] private OxygenDrainTrigger _oxygenDrainTrigger;
     [SerializeField] private SwitchableElement _cleanKey;
+    [SerializeField] private CharacterController _characterController;
+
     private PlayerOxygenManager _oxygenManager;
     private IPlayerInput _playerInput;
     private IInputStateManager _inputStateManager;
@@ -15,10 +17,11 @@ public class Tutor : MonoBehaviour
     private Tween _cleenKeyTween;
 
     [Inject]
-    public void Construct(IPlayerInput playerInput, IInputStateManager inputStateManager)
+    public void Construct(IPlayerInput playerInput, IInputStateManager inputStateManager, PlayerFacade playerFacade)
     {
         _playerInput = playerInput;
         _inputStateManager = inputStateManager;
+        _characterController = playerFacade.Colider;
 
         _playerInput.OnClean += OnClean;
     }
@@ -49,6 +52,11 @@ public class Tutor : MonoBehaviour
         _inputStateManager.ToWorldState();
         _cleenKeyTween?.Kill();
         _cleanKey.Disable();
+        DOTween.To(
+            () => _characterController.height,
+            newHeight => _characterController.height = newHeight,
+            2,
+            1f).SetEase(Ease.Linear);
     }
 
     private void OnOxygenRestored()

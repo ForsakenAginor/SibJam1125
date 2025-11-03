@@ -81,7 +81,7 @@ namespace Assets.Source.Scripts.DI.Installers
 
         private void BindPlayer()
         {
-            PlayerFacade player = _instantiateWrapper.Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
+            PlayerFacade player = _instantiateWrapper.Instantiate(_playerPrefab, new Vector3(0, -1.25f, 0),Quaternion.identity);
             PlayerTransform playerTransform = player.GetComponentInChildren<PlayerTransform>();
             var flashlight = player.GetComponentInChildren<Flashlight>();
             flashlight.fillImage = _flashlightImage;

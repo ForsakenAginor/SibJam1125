@@ -12,6 +12,7 @@ public class PlayerFacade : MonoBehaviour
     [SerializeField] private PlayerDamageTaker _damageTaker;
     [SerializeField] private BreathSwitcher _breathSwitcher;
     [SerializeField] private Flashlight _flashlight;
+    [SerializeField] private CharacterController _collider;
 
     private PlayerOxygenManager _oxygenManager;
     private IZenjectInstantiateWrapper _instantiateWrapper;
@@ -32,4 +33,6 @@ public class PlayerFacade : MonoBehaviour
     public PlayerDamageTaker DamageTaker => _damageTaker;
 
     public Flashlight Flashlight => _flashlight;
+
+    public CharacterController Colider => _collider;
 }

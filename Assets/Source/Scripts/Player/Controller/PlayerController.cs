@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
         _playerCamera.transform.SetParent(_cameraAnchor);
         _playerCamera.transform.localPosition = Vector3.zero;
         _playerCamera.transform.rotation = Quaternion.identity;
+        transform.localRotation = Quaternion.Euler(0, 180, 0);
 
         _mask.SetParent(_playerCamera.transform);
         _mask.localPosition = _maskOffset;
