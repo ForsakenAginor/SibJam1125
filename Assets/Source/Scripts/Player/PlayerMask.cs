@@ -29,12 +29,12 @@ public class PlayerMask : MonoBehaviour
         }
 
         flashlight.IsRecharge = false;
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.R) || Input.GetMouseButton(1))
         {
             flashlight.IsRecharge = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown(KeyCode.Alpha1))
         {
             DirtPainter.Instance.StartClean();
         }
@@ -47,6 +47,11 @@ public class PlayerMask : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             DirtPainter.Instance.AddComplexStains();
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            flashlight.StrongFade();
         }
 
         if (Input.GetKeyDown(KeyCode.C))

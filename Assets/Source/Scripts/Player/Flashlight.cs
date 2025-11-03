@@ -32,6 +32,8 @@ namespace Assets.Source.Scripts.Utility
 
         public bool IsRecharge = false;
 
+        private bool IsStrongFade = false;
+
         public bool IsWorking => gameObject.activeSelf && IntensityKoef > 0.5f;
 
         public float IntensityKoef { get; private set; }
@@ -48,6 +50,9 @@ namespace Assets.Source.Scripts.Utility
 
         private float fogStrength;
         private float fogStrengthStart;
+
+        private float strongFadeTimeout;
+        private float currentStrongFadeTimeout;
 
         public float audioVolumeStart;
 
@@ -85,8 +90,7 @@ namespace Assets.Source.Scripts.Utility
                 return;
             }
 
-
-            if (IsRecharge)
+            if (IsRecharge && IsStrongFade == false)
             {
                 currentRechargeSpeed += rechargeIncreaseSpeed * Time.deltaTime;
                 currentRechargeSpeed = Mathf.Clamp(currentRechargeSpeed, 0, rechargeSpeedMax);
@@ -94,6 +98,18 @@ namespace Assets.Source.Scripts.Utility
             }
             else
             {
+                if (IsStrongFade)
+                {
+                    currentStrongFadeTimeout -= Time.deltaTime;
+                    currentFadeSpeed = fadeSpeed * 30;
+                    if (currentStrongFadeTimeout <= 0)
+                    {
+                        IsStrongFade = false;
+                        currentRechargeSpeed = 0;
+                        currentFadeSpeed = fadeSpeed;
+                    }
+                }
+
                 currentRechargeSpeed -= rechargeIncreaseSpeed * Time.deltaTime;
                 currentRechargeSpeed = Mathf.Clamp(currentRechargeSpeed, 0, rechargeSpeedMax);
                 intensity -= currentFadeSpeed * Time.deltaTime;
@@ -124,6 +140,12 @@ namespace Assets.Source.Scripts.Utility
             {
                 fillImage.enabled = false;
             }
+        }
+
+        public void StrongFade()
+        {
+            IsStrongFade = true;
+            currentStrongFadeTimeout = 0.5f;
         }
 
         public void Enable()
