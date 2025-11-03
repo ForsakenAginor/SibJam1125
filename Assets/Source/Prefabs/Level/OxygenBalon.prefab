@@ -27,12 +27,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934207409379075328}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.54, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0.6320001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4181129271092383453}
+  m_Father: {fileID: 7756348744662450250}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &4447357843669154103
 Light:
@@ -44,9 +44,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.9433962, g: 0.9190161, b: 0.37824848, a: 1}
-  m_Intensity: 3
-  m_Range: 5
+  m_Color: {r: 0.7075472, g: 0.068199806, b: 0.050062295, a: 1}
+  m_Intensity: 2.5
+  m_Range: 3
   m_SpotAngle: 60.18103
   m_InnerSpotAngle: 27.293459
   m_CookieSize: 10
@@ -218,7 +218,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7913383126699342062}
-  - {fileID: 8179062449172933499}
   - {fileID: 8706395892707719715}
   - {fileID: 7756348744662450250}
   m_Father: {fileID: 0}
@@ -362,7 +361,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5fa5e63d369578149a934ce7fe96c6ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8179062449172933499}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5fa5e63d369578149a934ce7fe96c6ff, type: 3}
       insertIndex: -1
