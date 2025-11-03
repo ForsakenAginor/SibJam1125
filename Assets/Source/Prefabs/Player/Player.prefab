@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: -4751781022870175890}
   - component: {fileID: 7093951377427422864}
   - component: {fileID: 1261600366536186995}
+  - component: {fileID: 5080721362461226253}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -521,6 +522,19 @@ MonoBehaviour:
   _low: {fileID: 2616530166774288452}
   _fullLimit: 0.6
   _midLimit: 0.25
+--- !u!114 &5080721362461226253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394684903986368003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271d6d9cf88fe8e40a431a4cc25958a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RadaraController
+  _radar: {fileID: 3858802373833943757}
 --- !u!1 &3600676470702653470
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,6 +544,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8651477124602970628}
+  - component: {fileID: 3858802373833943757}
   m_Layer: 0
   m_Name: Radar
   m_TagString: Untagged
@@ -553,6 +568,18 @@ Transform:
   - {fileID: 2468549089831929583}
   m_Father: {fileID: 2038857364784023998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3858802373833943757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3600676470702653470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c096e5f8ea8c5334f8c2524ea9252527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Source.Scripts.Utility.SwitchableElement
 --- !u!1 &4958363503018730201
 GameObject:
   m_ObjectHideFlags: 0

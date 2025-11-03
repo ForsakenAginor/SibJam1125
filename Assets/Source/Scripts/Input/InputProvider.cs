@@ -6,6 +6,10 @@ public interface IPlayerInput
 {
     public bool IsSprinted { get; }
 
+    public bool IsCharging {  get; }
+
+    public event Action OnClean;
+    public event Action OnRadarPressed;
     public event Action OnInteractStart;
     public event Action OnInteractCancel;
     public event Action OnJump;
@@ -42,6 +46,11 @@ public class InputProvider : IPlayerInput, IInputStateManager
         _inputActions.Player.Look.performed += OnLookPerformed;
         _inputActions.Player.Jump.performed += OnJumpPerformed;
 
+        _inputActions.Player.Clean.performed += OnCleanPerformed;
+        _inputActions.Player.Radar.performed += OnRadarPerformed;
+        _inputActions.Player.Charge.started += OnChargeStarted;
+        _inputActions.Player.Charge.canceled += OnChargeCanceled;
+
         _inputActions.Player.Interact.started += OnInteractStarted;
         _inputActions.Player.Interact.canceled += OnInteractCanceled;
     }
@@ -49,6 +58,11 @@ public class InputProvider : IPlayerInput, IInputStateManager
     ~InputProvider()
     {
         _inputActions.Menu.Esc.started -= OnEscPerformed;
+
+        _inputActions.Player.Clean.performed -= OnCleanPerformed;
+        _inputActions.Player.Radar.performed -= OnRadarPerformed;
+        _inputActions.Player.Charge.started -= OnChargeStarted;
+        _inputActions.Player.Charge.canceled -= OnChargeCanceled;
 
         _inputActions.Player.Sprint.started -= OnSprintStarted;
         _inputActions.Player.Sprint.canceled -= OnSprintCanceled;
@@ -67,7 +81,12 @@ public class InputProvider : IPlayerInput, IInputStateManager
     public event Action OnInteractCancel;
     public event Action OnJump;
 
+    public event Action OnClean;
+    public event Action OnRadarPressed;
+
     public Vector2 GetMoveInput() => _inputActions.Player.Move.ReadValue<Vector2>();
+
+    public bool IsCharging { get; private set; }
 
     public bool IsSprinted { get; private set; }
 
@@ -98,6 +117,26 @@ public class InputProvider : IPlayerInput, IInputStateManager
     private void OnEscPerformed(InputAction.CallbackContext context)
     {
         EscPerformed?.Invoke();
+    }
+
+    private void OnCleanPerformed(InputAction.CallbackContext context)
+    {
+        OnClean?.Invoke();
+    }
+
+    private void OnRadarPerformed(InputAction.CallbackContext context)
+    {
+        OnRadarPressed?.Invoke();
+    }
+
+    private void OnChargeStarted(InputAction.CallbackContext context)
+    {
+        IsCharging = true;
+    }
+
+    private void OnChargeCanceled(InputAction.CallbackContext context)
+    {
+        IsCharging = false;
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext context)

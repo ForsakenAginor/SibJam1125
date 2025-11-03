@@ -1,49 +1,42 @@
 using Assets.Source.Scripts.Utility;
+using System;
 using UnityEngine;
+using Zenject;
 
 public class PlayerMask : MonoBehaviour
 {
     [SerializeField] private Flashlight flashlight;
 
-    private bool _isOn = false;
+    private IPlayerInput _input;
 
-    private void Start()
+    [Inject]
+    public void Construct(IPlayerInput input)
     {
-        _isOn = flashlight.gameObject.activeSelf;
+        _input = input;
+
+        _input.OnClean += OnClean;
+    }
+
+    private void OnDestroy()
+    {
+        _input.OnClean -= OnClean;
+    }
+
+    private void OnClean()
+    {
+        DirtPainter.Instance.StartClean();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (_isOn)
-            {
-                _isOn = false;
-                flashlight.Disable();
-            }
-            else
-            {
-                _isOn = true;
-                flashlight.Enable();
-            }
-        }
-
         flashlight.IsRecharge = false;
-        if (Input.GetKey(KeyCode.R) || Input.GetMouseButton(1))
-        {
+
+        if(_input.IsCharging)
             flashlight.IsRecharge = true;
-        }
 
-        if (Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            DirtPainter.Instance.StartClean();
-        }
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            //DirtPainter.Instance.FillAll_Test();
-        }
 
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.H))
         {
             DirtPainter.Instance.AddComplexStains();
@@ -64,6 +57,7 @@ public class PlayerMask : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+#endif
 
         DirtPainter.Instance.lightKoef = flashlight.IntensityKoef;
     }
