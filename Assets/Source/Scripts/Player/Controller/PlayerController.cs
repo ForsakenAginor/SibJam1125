@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Flashlight _flashlight;
 
     private Vector3 _maskOffset = new Vector3(0, -0.5f, 0.28f);
+    public AudioSource StepsAudioSource;
+    private Vector3 lastPosition;
 
     [Header("Movement Settings")]
     [SerializeField] private float walkSpeed = 5f;
@@ -67,6 +69,26 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         HandleMovement();
+        // Check if the player has moved since the last frame
+        if (transform.position != lastPosition)
+        {
+            // If the player is moving and the sound is not already playing, play the sound
+            if (!StepsAudioSource.isPlaying)
+            {
+                StepsAudioSource.Play();
+            }
+        }
+        else
+        {
+            // If the player is not moving, stop the sound
+            if (StepsAudioSource.isPlaying)
+            {
+                StepsAudioSource.Stop();
+            }
+        }
+
+        // Update last position for the next frame
+        lastPosition = transform.position;
     }
 
     public void SetXSens(float x) => horizontalSensitivity = x;
