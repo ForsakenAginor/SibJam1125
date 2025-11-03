@@ -3,6 +3,8 @@ using UnityEngine;
 
 public interface IGameSettings
 {
+    public float StartedOxygenPercent { get; }
+
     public float OxygenDrainFrequency { get; }
 
     public int OxygenBasicDrain { get; }
@@ -28,6 +30,9 @@ public class GameSettings : SerializedScriptableObject, IGameSettings
     [SerializeField] private float _drainFrequency = 1f;
     [SerializeField] private float _sprintOxygenMultiplier = 1.1f;
     [SerializeField] private float _oxygenReloadTime = 2f;
+    [SerializeField, Range(0f, 1f)] private float _starterOxygenPercent = 0.25f;
+
+    public float StartedOxygenPercent => _starterOxygenPercent;
 
     public float WalkSpeed => _walkSpeed;
 

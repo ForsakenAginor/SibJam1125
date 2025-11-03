@@ -19,7 +19,8 @@ public class PlayerOxygenManager
 
     public PlayerOxygenManager(ICoroutineRunner coroutineRunner, IGameSettings gameSettings, IPlayerInput input)
     {
-        _oxygen = new Resource(gameSettings.OxygenMaximum);
+        int starterOxygen = (int)(gameSettings.StartedOxygenPercent * gameSettings.OxygenMaximum);
+        _oxygen = new Resource(starterOxygen, gameSettings.OxygenMaximum);
         _coroutineRunner = coroutineRunner;
         _input = input;
 
