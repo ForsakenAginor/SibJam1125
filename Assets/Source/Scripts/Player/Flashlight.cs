@@ -32,7 +32,7 @@ namespace Assets.Source.Scripts.Utility
 
         public bool IsRecharge = false;
 
-        public bool IsWorking => intensity > intensityStart * 0.5f;
+        public bool IsWorking => gameObject.activeSelf && IntensityKoef > 0.5f;
 
         public float IntensityKoef { get; private set; }
 
@@ -80,7 +80,11 @@ namespace Assets.Source.Scripts.Utility
         private void Update()
         {
             if (isDisabled)
+            {
+                IntensityKoef = 0f;
                 return;
+            }
+
 
             if (IsRecharge)
             {
