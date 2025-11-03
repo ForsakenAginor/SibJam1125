@@ -26,7 +26,7 @@ public class DirtPainter : MonoBehaviour
     public SpriteRenderer targetRenderer;
 
     public int textureSize = 512;
-    private int pixelMultiplicatorCount = 50;
+    private int pixelMultiplicatorCount = 5;
 
     public int pixelMinCount = 5;
 
@@ -73,6 +73,9 @@ public class DirtPainter : MonoBehaviour
             textureSize); // Пиксель пер юнит
 
         rotationX = textureSize / 2;
+
+        AddComplexStains();
+        texture.Apply();
     }
 
 

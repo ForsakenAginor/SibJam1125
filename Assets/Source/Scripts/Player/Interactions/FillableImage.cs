@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Assets.Source.Scripts.DI.Services.Game;
+using DG.Tweening;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,12 +12,14 @@ public class FillableImage : MonoBehaviour
     [SerializeField] private float _unfillTime = 0.5f;
 
     private Tween _fillTween;
+    private AudioPlayer _audioPlayer;
 
     public event Action FillComplete;
 
     [Inject]
-    public void Construct(IGameSettings gameSettings)
+    public void Construct(IGameSettings gameSettings, AudioPlayer audioPlayer)
     {
+        _audioPlayer = audioPlayer;
         _unfillTime = gameSettings.OxygenReloadTime;
     }
 
@@ -30,6 +33,7 @@ public class FillableImage : MonoBehaviour
         if (_fillTween != null && _fillTween.IsActive())
             _fillTween.Kill();
 
+        _audioPlayer.PlayOxyRecharge();
         _fillableImage.fillAmount = 0;
         _fillTween = _fillableImage
             .DOFillAmount(1f, _fillTime)
@@ -42,6 +46,7 @@ public class FillableImage : MonoBehaviour
         if (_fillTween != null && _fillTween.IsActive())
             _fillTween.Kill();
 
+        _audioPlayer.PlayOxyRollback();
         _fillTween = _fillableImage
             .DOFillAmount(0f, _unfillTime)
             .SetEase(Ease.Linear);
