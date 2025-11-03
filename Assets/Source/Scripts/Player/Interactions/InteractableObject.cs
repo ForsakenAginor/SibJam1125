@@ -8,6 +8,8 @@ public abstract class InteractableObject : MonoBehaviour, IInteractable
     private IPlayerInteractor _player;
     private SphereCollider _collider;
 
+    public virtual bool IsInstant => false;
+
     [Inject]
     public void Construct(IPlayerInteractor player)
     {

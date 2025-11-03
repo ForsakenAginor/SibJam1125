@@ -27,15 +27,23 @@ public class PlayerInteractor : MonoBehaviour, IPlayerInteractor
 
     public void SetInteractable(IInteractable interactable)
     {
-        if(_interactable != null)
+        if (_interactable != null)
             return;
 
         UnsubscribeFromInputEvents();
         _canInteract = true;
         _interactable = interactable;
         _tooltip.Enable();
-        _inputProvider.OnInteractStart += OnInteractStarted;
-        _inputProvider.OnInteractCancel += OnInteractCanceled;
+
+        if (interactable.IsInstant == false)
+        {
+            _inputProvider.OnInteractStart += OnInteractStarted;
+            _inputProvider.OnInteractCancel += OnInteractCanceled;
+        }
+        else
+        {
+            _inputProvider.OnInteractStart += OnInteract;
+        }
 
     }
 
@@ -52,6 +60,7 @@ public class PlayerInteractor : MonoBehaviour, IPlayerInteractor
     {
         _inputProvider.OnInteractStart -= OnInteractStarted;
         _inputProvider.OnInteractCancel -= OnInteractCanceled;
+        _inputProvider.OnInteractStart -= OnInteract;
     }
 
     private void OnInteract()

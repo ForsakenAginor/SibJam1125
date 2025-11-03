@@ -6,8 +6,11 @@ public class FlashlightObject : InteractableObject
 {
     [SerializeField] private SwitchableElement _view;
 
-    public event Action Pickuped;
     private bool _isEnabled = true;
+
+    public event Action Pickuped;
+
+    public override bool IsInstant => true;
 
     public override void Interact()
     {
