@@ -38,7 +38,7 @@ namespace Assets.Source.Scripts.EntryPoint
 
             input.ToWorldState();
 
-            _colorizationFSEffect.Enable();
+            //_colorizationFSEffect.Enable();
             _healthVignette.Enable();
             _noiceVignette.Enable();
             _saveLoadServices.Add(_soundInitializer);

@@ -1,5 +1,6 @@
 using Assets.Source.Scripts.DI.Services.Game;
 using Assets.Source.Scripts.Utility;
+using UnityEngine;
 
 public class OxygenFSEffectsAdapter
 {
@@ -13,6 +14,9 @@ public class OxygenFSEffectsAdapter
         _colorizationEffect = colorizationFSEffect;
         _oxygen = oxygen;
 
+        _colorizationEffect.Enable();
+        OnOxyChanged();
+
         _oxygen.ResourcesAmountChanged += OnOxyChanged;
     }
 
@@ -23,7 +27,7 @@ public class OxygenFSEffectsAdapter
 
     private void OnOxyChanged()
     {
-        _noiseEffect.SetEffectStrength(_oxygen.Percent);
+        //_noiseEffect.SetEffectStrength(_oxygen.Percent);
         _colorizationEffect.SetStrength(_oxygen.Percent);
     }
 }
