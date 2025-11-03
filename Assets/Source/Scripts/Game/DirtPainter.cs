@@ -391,6 +391,8 @@ public class DirtPainter : MonoBehaviour
         var maxAngle = cleanPoints.Min(t => t.endAngle);
         currentAngle = minAngle;
 
+        addAmpl = Random.Range(0, 10);
+
         foreach (var item in cleanPoints)
         {
             item.currentAngle = item.startAngle;
@@ -411,6 +413,7 @@ public class DirtPainter : MonoBehaviour
     int maxAngle = 0;
     int index = 0;
 
+    int addAmpl = 0;
     private void Clean()
     {
         //var minAngle = cleanPoints.Min(t => t.startAngle);
@@ -418,14 +421,18 @@ public class DirtPainter : MonoBehaviour
 
         var color = new Color(0, 0, 0, 0);
         float angle = currentAngle * Mathf.Deg2Rad;
-        foreach (var cleanPoint in cleanPoints)
+
+        for (int i = 0; i < cleanPoints.Length; i++)
         {
+            CleanPoint cleanPoint = cleanPoints[i];
             if (!cleanPoint.isCleaning)
                 continue;
 
+            var amplitude = cleanPoint.rotationAmplitude + addAmpl;
+
             //float angle = cleanPoint.currentAngle * Mathf.Deg2Rad;
-            cleanPoint.centerX = rotationX + Mathf.RoundToInt(cleanPoint.rotationAmplitude * Mathf.Cos(angle));
-            cleanPoint.centerY = rotationY + Mathf.RoundToInt(cleanPoint.rotationAmplitude * Mathf.Sin(angle));
+            cleanPoint.centerX = rotationX + Mathf.RoundToInt(amplitude * Mathf.Cos(angle));
+            cleanPoint.centerY = rotationY + Mathf.RoundToInt(amplitude * Mathf.Sin(angle));
         }
 
         for (int y = 0; y < textureSize; y++)
