@@ -1,6 +1,7 @@
 using Assets.Source.Scripts.DI.Services.Game;
 using NUnit.Framework.Internal;
 using Sirenix.OdinInspector;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -27,6 +28,8 @@ public class SpiderNavigator : MonoBehaviour
     private PlayerDamageTaker _playerDamageTaker;
     private WaitForSeconds _delay = new WaitForSeconds(0.5f);
 
+    public event Action AttackPlayer;
+
     [Inject]
     public void Construct(IPlayerTransform player, AudioPlayer audioPlayer, PlayerFacade playerFacade)
     {
@@ -42,6 +45,7 @@ public class SpiderNavigator : MonoBehaviour
         yield return _delay;
         _playerDamageTaker.TakeDamage();
         _audioPlayer.PlayTakeDamage();
+        AttackPlayer?.Invoke();
     }
 
     public bool CanSeePlayer()

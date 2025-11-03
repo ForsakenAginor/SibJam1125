@@ -1,10 +1,6 @@
-using Assets.Source.Scripts.DI.Services.Global;
 using Assets.Source.Scripts.Utility;
 using DG.Tweening;
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +11,9 @@ public class Tutor : MonoBehaviour
     [SerializeField] private FlashlightObject _flashlightObject;
     [SerializeField] private SwitchableElement _flashlightIcon;
     [SerializeField] private SwitchableElement _pickupFlashlightText;
+    [SerializeField] private VoiceMessagePlayer _voiceMessagePlayer;
+
+    [SerializeField] private SpiderNavigator[] _spiders;
 
     private CharacterController _characterController;
     private Flashlight _flashlight;
@@ -35,6 +34,11 @@ public class Tutor : MonoBehaviour
         _flashlight = playerFacade.Flashlight;
 
         _playerInput.OnClean += OnClean;
+
+        foreach(var spider in _spiders)
+        {
+            spider.AttackPlayer += OnPlayerAttacked;
+        }    
     }
 
     private void OnDestroy()
@@ -43,6 +47,11 @@ public class Tutor : MonoBehaviour
         _flashlightObject.Pickuped -= OnPickuped;
         _oxygenManager.OxygenRestored -= OnOxygenRestored;
         _oxygenDrainTrigger.PlayerEnter -= OnOxygenRestored;
+
+        foreach (var spider in _spiders)
+        {
+            spider.AttackPlayer -= OnPlayerAttacked;
+        }
     }
 
     public void Init(PlayerOxygenManager oxygenManager)
@@ -54,6 +63,16 @@ public class Tutor : MonoBehaviour
         _flashlightObject.Pickuped += OnPickuped;
         _oxygenManager.OxygenRestored += OnOxygenRestored;
         _oxygenDrainTrigger.PlayerEnter += OnOxygenRestored;
+    }
+
+    private void OnPlayerAttacked()
+    {
+        foreach (var spider in _spiders)
+        {
+            spider.AttackPlayer -= OnPlayerAttacked;
+        }
+
+        _voiceMessagePlayer.Play(VoiceMessage.SpiderScare);
     }
 
     private void OnPickuped()
@@ -71,6 +90,7 @@ public class Tutor : MonoBehaviour
 
     private void OnClean()
     {
+        _playerInput.OnClean -= OnClean;
         _inputStateManager.ToWorldState();
         _cleenKeyTween?.Kill();
         _cleanKey.Disable();
@@ -80,9 +100,8 @@ public class Tutor : MonoBehaviour
             2,
             1f).SetEase(Ease.Linear);
 
-        if (_isFlashlighPickuped == false)
-            _pickupFlashlightText.Enable();
-
+        _pickupFlashlightText.Enable();
+        _voiceMessagePlayer.Play(VoiceMessage.YouAlive);
     }
 
     private void OnOxygenRestored()
@@ -91,48 +110,8 @@ public class Tutor : MonoBehaviour
         {
             _isOxyDraining = true;
             _oxygenManager.StartOxygenDrain();
+            _voiceMessagePlayer.Play(VoiceMessage.ISeeYou);
         }
-    }
-
-}
-
-public class VoiceMessagePlayer : SerializedMonoBehaviour
-{
-    [ShowInInspector, OdinSerialize] private Dictionary<VoiceMessage, AudioClip> _clips;
-    [SerializeField] private AudioSource _audioSource;
-
-    private ICoroutineRunner _coroutineRunner;
-    private CoroutineQueue _queue;
-
-    [Inject]
-    public void Construct(ICoroutineRunner coroutineRunner)
-    {
-        _coroutineRunner = coroutineRunner;
-        _queue = _coroutineRunner.StartCorotineQueue();
-        _queue.StartLoop();
-    }
-
-    private void OnDestroy()
-    {
-        _queue.StopLoop();
-    }
-
-    public void Play(VoiceMessage message)
-    {
-        _queue.EnqueueCoroutine(PlayVoiceMessage(message));
-    }
-
-    private IEnumerator PlayVoiceMessage(VoiceMessage message)
-    {
-        WaitForSeconds delay = new WaitForSeconds(_clips[message].length);
-        WaitForSeconds pause = new WaitForSeconds(2f);
-        yield return pause;
-
-        _audioSource.clip = _clips[message];
-        _audioSource.Play();
-
-        yield return delay;
-        _audioSource.Stop();
     }
 
 }
