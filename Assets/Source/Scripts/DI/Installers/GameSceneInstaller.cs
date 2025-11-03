@@ -44,6 +44,7 @@ namespace Assets.Source.Scripts.DI.Installers
             BindHealthVignetteEffect();
             BindNoiceVignetteEffect();
             BindColorizationEffect();
+            BindOxygenManager();
             BindPlayer();
             BindInteractor();
             BindSpidersFactory();
@@ -77,6 +78,18 @@ namespace Assets.Source.Scripts.DI.Installers
                 .To<PlayerInteractor>()
                 .FromInstance(interactor)
                 .AsCached();
+        }
+
+        private void BindOxygenManager()
+        {
+            PlayerOxygenManager oxygenManager = _instantiateWrapper.Create<PlayerOxygenManager>();
+
+            Container
+                .Bind<PlayerOxygenManager>()
+                .To<PlayerOxygenManager>()
+                .FromInstance(oxygenManager)
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindPlayer()
