@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using VolumetricFogAndMist2;
 
@@ -23,8 +21,6 @@ namespace Assets.Source.Scripts.Utility
         private Vector3 fogVoidScaleStart;
 
         [SerializeField] private VolumetricFog fog;
-
-        [SerializeField] private AudioSource audioSource;
 
         public Image fillImage;
 
@@ -63,9 +59,6 @@ namespace Assets.Source.Scripts.Utility
             fogPoint = GetComponent<FogPointLight>();
             fogVoid = GetComponentInChildren<FogVoid>();
             fogVoidScaleStart = fogVoid.transform.localScale;
-
-            audioSource = GetComponent<AudioSource>();
-            audioVolumeStart = audioSource.volume;
 
             currentFadeSpeed = fadeSpeed;
 
@@ -128,8 +121,6 @@ namespace Assets.Source.Scripts.Utility
             {
                 fog.settings.noiseStrength = Mathf.Lerp(fogStrengthStart, 0, IntensityKoef);
             }
-
-            audioSource.volume = Mathf.Lerp(audioVolumeStart, audioVolumeStart, IntensityKoef);
 
             if (IsRecharge)
             {

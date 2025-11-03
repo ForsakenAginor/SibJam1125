@@ -21,6 +21,7 @@ namespace Assets.Source.Scripts.DI.Services.Game
         [SerializeField] private AudioSource _spiderFlee;
         [SerializeField] private AudioSource _takeDamage;
         [SerializeField] private AudioSource _cleanScreen;
+        [SerializeField] private AudioSource _rechargeFlashlight;
 
         private void Awake()
         {
@@ -32,6 +33,17 @@ namespace Assets.Source.Scripts.DI.Services.Game
                 _audioSources.Enqueue(_audioSourcesArray[i]);
                 _cachedWaitWhiles.Add(_audioSourcesArray[i], new WaitWhileCached(() => false));
             }
+        }
+
+        public void PlayRecharge()
+        {
+            if (_rechargeFlashlight.isPlaying == false)
+                _rechargeFlashlight.Play();
+        }
+
+        public void StopRecharge()
+        {
+            _rechargeFlashlight.Pause();
         }
 
         public void PlayCleanScreen()
