@@ -147,6 +147,8 @@ namespace Assets.Source.Scripts.Utility
 
         public void Enable()
         {
+            IntensityKoef = 1f;
+            isDisabled = false;
             gameObject.SetActive(true);
         }
 

@@ -8,9 +8,10 @@ public class Tutor : MonoBehaviour
 {
     [SerializeField] private OxygenDrainTrigger _oxygenDrainTrigger;
     [SerializeField] private SwitchableElement _cleanKey;
-    [SerializeField] private CharacterController _characterController;
     [SerializeField] private FlashlightObject _flashlightObject;
+    [SerializeField] private SwitchableElement _flashlightIcon;
 
+    private CharacterController _characterController;
     private Flashlight _flashlight;
     private PlayerOxygenManager _oxygenManager;
     private IPlayerInput _playerInput;
@@ -52,6 +53,7 @@ public class Tutor : MonoBehaviour
     private void OnPickuped()
     {
         _flashlight.Enable();
+        _flashlightIcon.Enable();
     }
 
     private void CreateCleenTween()

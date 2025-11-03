@@ -35,9 +35,11 @@ public class PlayerMask : MonoBehaviour
     {
         flashlight.IsRecharge = false;
 
-        if(_input.IsCharging)
+        if (_input.IsCharging)
         {
-            _player.PlayRecharge();
+            if (flashlight.isDisabled == false)
+                _player.PlayRecharge();
+
             flashlight.IsRecharge = true;
         }
         else
