@@ -39,7 +39,7 @@ namespace Assets.Source.Scripts.EntryPoint
             _colorizationFSEffect = colorizationFSEffect;
             _playerFacade = playerFacade;
 
-            input.ToWorldState();
+            input.ToTutorState();
 
             //_colorizationFSEffect.Enable();
             _healthVignette.Enable();

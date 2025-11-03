@@ -27,6 +27,8 @@ public interface IInputStateManager
     public void ToWorldState();
 
     public void ToFinishState();
+
+    public void ToTutorState();
 }
 
 public class InputProvider : IPlayerInput, IInputStateManager
@@ -36,8 +38,7 @@ public class InputProvider : IPlayerInput, IInputStateManager
     public InputProvider()
     {
         _inputActions = new OurInputActions();
-        _inputActions.Menu.Enable();
-        _inputActions.Player.Enable();
+        _inputActions.Tutor.Enable();
 
         _inputActions.Menu.Esc.started += OnEscPerformed;
 
@@ -46,6 +47,7 @@ public class InputProvider : IPlayerInput, IInputStateManager
         _inputActions.Player.Look.performed += OnLookPerformed;
         _inputActions.Player.Jump.performed += OnJumpPerformed;
 
+        _inputActions.Tutor.Clean.performed += OnCleanPerformed;
         _inputActions.Player.Clean.performed += OnCleanPerformed;
         _inputActions.Player.Radar.performed += OnRadarPerformed;
         _inputActions.Player.Charge.started += OnChargeStarted;
@@ -59,6 +61,7 @@ public class InputProvider : IPlayerInput, IInputStateManager
     {
         _inputActions.Menu.Esc.started -= OnEscPerformed;
 
+        _inputActions.Tutor.Clean.performed -= OnCleanPerformed;
         _inputActions.Player.Clean.performed -= OnCleanPerformed;
         _inputActions.Player.Radar.performed -= OnRadarPerformed;
         _inputActions.Player.Charge.started -= OnChargeStarted;
@@ -90,10 +93,21 @@ public class InputProvider : IPlayerInput, IInputStateManager
 
     public bool IsSprinted { get; private set; }
 
+    public void ToTutorState()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        _inputActions.Tutor.Enable();
+        _inputActions.Player.Disable();
+        _inputActions.Menu.Disable();
+    }
+
+
     public void ToWorldState()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        _inputActions.Tutor.Disable();
         _inputActions.Player.Enable();
         _inputActions.Menu.Enable();
     }

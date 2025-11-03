@@ -281,6 +281,34 @@
             ]
         },
         {
+            "name": "Tutor",
+            "id": "03a8aed5-7678-46aa-a6ea-a6c319955339",
+            "actions": [
+                {
+                    "name": "Clean",
+                    "type": "Button",
+                    "id": "377b5751-7e2e-444e-924b-88367dab4dbe",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a5074676-2424-4022-8759-53d5749a46f3",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Clean",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "UI",
             "id": "272f6d14-89ba-496f-b7ff-215263d3219f",
             "actions": [
