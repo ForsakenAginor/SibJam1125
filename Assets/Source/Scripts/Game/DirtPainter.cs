@@ -73,6 +73,9 @@ public class DirtPainter : MonoBehaviour
             textureSize); // Пиксель пер юнит
 
         rotationX = textureSize / 2;
+
+        AddComplexStains();
+        texture.Apply();
     }
 
 
