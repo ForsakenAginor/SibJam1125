@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 1204083804898269655}
   - component: {fileID: 8619881266979007447}
   - component: {fileID: 2505735262334456031}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1201,7 +1201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2468549089831929583}
   - component: {fileID: 7108626413260764487}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
