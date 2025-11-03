@@ -54,6 +54,12 @@ namespace Assets.Source.Scripts.Utility
 
         private void Start()
         {
+            isDisabled = true;
+            Disable();
+        }
+
+        public void Init()
+        {
             fog = FindFirstObjectByType<VolumetricFog>();
 
             fogPoint = GetComponent<FogPointLight>();
@@ -141,6 +147,8 @@ namespace Assets.Source.Scripts.Utility
 
         public void Enable()
         {
+            IntensityKoef = 1f;
+            isDisabled = false;
             gameObject.SetActive(true);
         }
 
