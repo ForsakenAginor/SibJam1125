@@ -94,7 +94,7 @@ namespace Assets.Source.Scripts.Utility
                 if (IsStrongFade)
                 {
                     currentStrongFadeTimeout -= Time.deltaTime;
-                    currentFadeSpeed = fadeSpeed * 30;
+                    currentFadeSpeed = fadeSpeed * 15;
                     if (currentStrongFadeTimeout <= 0)
                     {
                         IsStrongFade = false;
