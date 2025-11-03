@@ -18,6 +18,11 @@ namespace Assets.Source.Scripts.Cheats
             _noiceEffect = noiceEffect;
         }
 
+        [Button]
+        private void ClearSave()
+        {
+            PlayerPrefs.DeleteAll();
+        }
 
         [Button]
         private void PlayDamageEffect()
