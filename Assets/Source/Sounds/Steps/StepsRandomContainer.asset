@@ -137,9 +137,9 @@ AudioRandomContainer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: StepsRandomContainer
-  m_Volume: -12
+  m_Volume: 0
   m_Pitch: 0
-  m_AutomaticTriggerTime: 0.2
+  m_AutomaticTriggerTime: 1.26
   m_LoopCount: 1
   m_VolumeRandomizationRange: {x: 0, y: 0}
   m_PitchRandomizationRange: {x: 0, y: 0}
@@ -164,7 +164,7 @@ AudioRandomContainer:
   m_AvoidRepeatingLast: 0
   m_PlaybackMode: 1
   m_TriggerMode: 1
-  m_AutomaticTriggerMode: 1
+  m_AutomaticTriggerMode: 0
   m_LoopMode: 0
   m_VolumeRandomizationEnabled: 0
   m_PitchRandomizationEnabled: 0
