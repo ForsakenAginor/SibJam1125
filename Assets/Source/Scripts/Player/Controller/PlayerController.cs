@@ -117,7 +117,18 @@ public class PlayerController : MonoBehaviour
         // Выбор скорости (ходьба/бег)
         float currentSpeed = _input.IsSprinted ? sprintSpeed : walkSpeed;
         if (_flashlight.IsRecharge)
+        {
             currentSpeed *= maxSpeedKoef;
+        }
+
+        if (_input.IsSprinted)
+        {
+            StepsAudioSource.pitch = sprintSpeed / walkSpeed;
+        }
+        else
+        {
+            StepsAudioSource.pitch = 1;
+        }
 
         // Применение движения
         _characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
