@@ -5,9 +5,12 @@ using Zenject;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform _mask;
+    [SerializeField] private Transform _radar;
+
     [SerializeField] private Flashlight _flashlight;
 
     private Vector3 _maskOffset = new Vector3(0, -0.5f, 0.28f);
+    private Vector3 _radarOffset = new Vector3(0, -0.5f, 0.29f);
     public AudioSource StepsAudioSource;
     private Vector3 lastPosition;
 
@@ -50,6 +53,9 @@ public class PlayerController : MonoBehaviour
 
         _mask.SetParent(_playerCamera.transform);
         _mask.localPosition = _maskOffset;
+
+        _radar.SetParent(_playerCamera.transform);
+        _radar.localPosition = _radarOffset;
 
         _flashlight = _mask.GetComponentInChildren<Flashlight>();
     }
