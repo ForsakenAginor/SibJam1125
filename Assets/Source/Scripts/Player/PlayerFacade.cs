@@ -1,5 +1,6 @@
 using Assets.Source.Scripts.DI.Services.Game;
 using Assets.Source.Scripts.DI.Services.Global;
+using Assets.Source.Scripts.Utility;
 using System;
 using UnityEngine;
 using Zenject;
@@ -10,6 +11,7 @@ public class PlayerFacade : MonoBehaviour
     [SerializeField] private PlayerSensitivityChanger _sensitivityChanger;
     [SerializeField] private PlayerDamageTaker _damageTaker;
     [SerializeField] private BreathSwitcher _breathSwitcher;
+    [SerializeField] private Flashlight _flashlight;
 
     private PlayerOxygenManager _oxygenManager;
     private IZenjectInstantiateWrapper _instantiateWrapper;
@@ -28,4 +30,6 @@ public class PlayerFacade : MonoBehaviour
     public PlayerOxygenManager Oxygen => _oxygenManager;
 
     public PlayerDamageTaker DamageTaker => _damageTaker;
+
+    public Flashlight Flashlight => _flashlight;
 }
