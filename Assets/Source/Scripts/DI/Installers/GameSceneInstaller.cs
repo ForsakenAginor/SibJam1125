@@ -46,6 +46,19 @@ namespace Assets.Source.Scripts.DI.Installers
             BindColorizationEffect();
             BindPlayer();
             BindInteractor();
+            BindSpidersFactory();
+        }
+
+        private void BindSpidersFactory()
+        {
+            SpiderStateMachineFactory factory = _instantiateWrapper.Create<SpiderStateMachineFactory>();
+
+            Container
+                .Bind<SpiderStateMachineFactory>()
+                .To<SpiderStateMachineFactory>()
+                .FromInstance(factory)
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindInteractor()
@@ -69,6 +82,7 @@ namespace Assets.Source.Scripts.DI.Installers
         private void BindPlayer()
         {
             PlayerFacade player = _instantiateWrapper.Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
+            PlayerTransform playerTransform = player.GetComponentInChildren<PlayerTransform>();
             var flashlight = player.GetComponentInChildren<Flashlight>();
             flashlight.fillImage = _flashlightImage;
 
@@ -76,6 +90,13 @@ namespace Assets.Source.Scripts.DI.Installers
                 .Bind<PlayerFacade>()
                 .To<PlayerFacade>()
                 .FromInstance(player)
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .Bind<IPlayerTransform>()
+                .To<PlayerTransform>()
+                .FromInstance(playerTransform)
                 .AsSingle()
                 .NonLazy();
 
