@@ -698,7 +698,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 3.3333335, z: 10}
+  m_LocalScale: {x: 15, y: 5, z: 15}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2237907094783906127}
@@ -1450,7 +1450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3131457874588883936, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_Intensity
-      value: 50
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 3131457874588883936, guid: 335d9a580c58dd74d9bf5abc15184579, type: 3}
       propertyPath: m_SpotAngle
@@ -1597,14 +1597,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Source.Scripts.Utility.Flashlight
   light: {fileID: 8368484929007136761}
-  fadeSpeed: 2
-  rechargeSpeedMax: 20
-  rechargeIncreaseSpeed: 10
+  fadeSpeed: 1.5
+  rechargeSpeedMax: 30
+  rechargeIncreaseSpeed: 20
   fogPoint: {fileID: 6856436502741269187}
   fogVoid: {fileID: 2681201575851832293}
   fogVoidKoefMin: 0.75
   fog: {fileID: 0}
-  audioSource: {fileID: 0}
   fillImage: {fileID: 0}
   isDisabled: 0
   IsRecharge: 0
