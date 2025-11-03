@@ -17,11 +17,11 @@ public class PlayerFacade : MonoBehaviour
     private IZenjectInstantiateWrapper _instantiateWrapper;
 
     [Inject]
-    public void Construct(IZenjectInstantiateWrapper instantiateWrapper, INoiseVignetteEffect noiseVignetteEffect, IColorizationFSEffect colorizationFSEffect) 
+    public void Construct(IZenjectInstantiateWrapper instantiateWrapper, INoiseVignetteEffect noiseVignetteEffect, IColorizationFSEffect colorizationFSEffect, AudioPlayer audioPlayer) 
     {
         _instantiateWrapper = instantiateWrapper;
         _oxygenManager = _instantiateWrapper.Create<PlayerOxygenManager>();
-        OxygenFSEffectsAdapter oxygenFSEffectsAdapter = new OxygenFSEffectsAdapter(noiseVignetteEffect, colorizationFSEffect ,_oxygenManager.Oxigen);
+        OxygenFSEffectsAdapter oxygenFSEffectsAdapter = new OxygenFSEffectsAdapter(noiseVignetteEffect, colorizationFSEffect ,_oxygenManager.Oxigen, audioPlayer);
         _breathSwitcher.Init(_oxygenManager.Oxigen);
     }
 

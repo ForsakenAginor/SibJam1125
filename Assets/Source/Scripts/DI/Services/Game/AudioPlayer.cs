@@ -22,6 +22,7 @@ namespace Assets.Source.Scripts.DI.Services.Game
         [SerializeField] private AudioSource _takeDamage;
         [SerializeField] private AudioSource _cleanScreen;
         [SerializeField] private AudioSource _rechargeFlashlight;
+        [SerializeField] private AudioSource _heartBeat;
 
         private void Awake()
         {
@@ -33,6 +34,14 @@ namespace Assets.Source.Scripts.DI.Services.Game
                 _audioSources.Enqueue(_audioSourcesArray[i]);
                 _cachedWaitWhiles.Add(_audioSourcesArray[i], new WaitWhileCached(() => false));
             }
+        }
+
+        public void PlayHeartbeat(float strength)
+        {
+            _heartBeat.volume = strength;
+
+            if(_heartBeat.isPlaying == false)
+                _heartBeat.Play();
         }
 
         public void PlayRecharge()
