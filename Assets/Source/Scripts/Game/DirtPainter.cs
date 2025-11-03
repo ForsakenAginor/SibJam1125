@@ -74,7 +74,8 @@ public class DirtPainter : MonoBehaviour
 
         rotationX = textureSize / 2;
 
-        AddComplexStains();
+
+        FadePixels(5000);
         texture.Apply();
     }
 
@@ -101,7 +102,7 @@ public class DirtPainter : MonoBehaviour
 
     void Update()
     {
-        if (isDisabled)
+        if (isDisabled || Time.timeScale < 0.1f)
         {
             return;
         }
@@ -192,38 +193,38 @@ public class DirtPainter : MonoBehaviour
         var pixelCount = Mathf.CeilToInt(speed * pixelMultiplicatorCount) * 60 * Time.deltaTime;
         if (pixelCount < pixelMinCount)
         {
-            if (UnityEngine.Random.value < 0.25f)
+            if (Random.value < 0.25f)
             {
                 pixelCount = pixelMinCount;
             }
         }
 
-        // pixelCount = Mathf.Clamp(pixelCount, 0, pixelMultiplicatorCount);
-        var xSize = endX - startX;
-        var ySize = endY - startY;
+        FadePixels(pixelCount);
+    }
 
-        //print(pixelCount);
+    private void FadePixels(float pixelCount)
+    {
         var pixelCountSpent = 0;
 
         var lerp = Mathf.Lerp(0.01f, 0.2f, pixelCount / pixelMinCount);
         for (int i = 0; i < pixelCount * 1000; i++)
         {
             var randomRedish = 0f;// UnityEngine.Random.Range(0, 0.2f);
-            var randomAlpha = UnityEngine.Random.Range(0.5f, 1f);
-            var gray = UnityEngine.Random.Range(0f, 0.3f);
+            var randomAlpha = Random.Range(0.5f, 1f);
+            var gray = Random.Range(0f, 0.3f);
 
-            color = new Color(gray + randomRedish, gray, gray, randomAlpha);
+            var color = new Color(gray + randomRedish, gray, gray, randomAlpha);
 
-            var randomX = UnityEngine.Random.Range(startX, endX + 1);
-            var randomY = UnityEngine.Random.Range(startY, endY + 1);
+            var randomX = Random.Range(startX, endX + 1);
+            var randomY = Random.Range(startY, endY + 1);
 
-            var additional = UnityEngine.Random.Range(1, 9);
+            var additional = Random.Range(1, 9);
 
             for (int x = -1; x < 2; x++)
             {
                 for (int y = -1; y < 2; y++)
                 {
-                    if (UnityEngine.Random.value < 0.25f)
+                    if (Random.value < 0.25f)
                     {
                         var pix = texture.GetPixel(randomX + x, randomY + y);
                         if (pix.a > 0.4f)
