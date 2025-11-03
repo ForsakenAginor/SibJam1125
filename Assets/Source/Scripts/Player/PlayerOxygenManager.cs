@@ -29,17 +29,22 @@ public class PlayerOxygenManager
         _sprintMultiplier = gameSettings.SprintOxygenMultiplier;
 
         _delay = new WaitForSeconds(_damageFrequency);
-
-        _coroutineRunner.StartCoroutine(TakeDamage());
     }
 
     public event Action PlayerDied;
+    public event Action OxygenRestored;
 
     public IResource Oxigen => _oxygen;
 
     public void RestoreOxygen()
     {
         _oxygen.Add(_oxygen.Maximum);
+        OxygenRestored?.Invoke();
+    }
+
+    public void StartOxygenDrain()
+    {
+        _coroutineRunner.StartCoroutine(TakeDamage());
     }
 
     private IEnumerator TakeDamage()

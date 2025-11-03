@@ -18,6 +18,7 @@ namespace Assets.Source.Scripts.EntryPoint
         [SerializeField] private Button[] _closeButtons;
         [SerializeField] private Button _restartButton;
         [SerializeField] private InGameMenu _gameMenu;
+        [SerializeField] private Tutor _tutor;
 
         private ISceneChanger _sceneChanger;
         private SaveDataProvider _saveDataProvider;
@@ -25,16 +26,18 @@ namespace Assets.Source.Scripts.EntryPoint
         private HealthVignetteEffect _healthVignette;
         private NoiceVignetteEffect _noiceVignette;
         private IColorizationFSEffect _colorizationFSEffect;
+        private PlayerFacade _playerFacade;
 
         [Inject]
         public void Construct(ISceneChanger sceneChanger, SaveDataProvider saveDataProvider, HealthVignetteEffect healthVignette, NoiceVignetteEffect noiceVignette,
-            IColorizationFSEffect colorizationFSEffect, IInputStateManager input)
+            IColorizationFSEffect colorizationFSEffect, IInputStateManager input, PlayerFacade playerFacade)
         {
             _sceneChanger = sceneChanger;
             _saveDataProvider = saveDataProvider;
             _healthVignette = healthVignette;
             _noiceVignette = noiceVignette;
             _colorizationFSEffect = colorizationFSEffect;
+            _playerFacade = playerFacade;
 
             input.ToWorldState();
 
@@ -46,6 +49,10 @@ namespace Assets.Source.Scripts.EntryPoint
 
         private void Start()
         {
+            _tutor.Init(_playerFacade.Oxygen);
+
+
+
             SensitivitySaveLoadService sensitivitySaveLoadService = new SensitivitySaveLoadService(_gameMenu);
             _saveLoadServices.Add(sensitivitySaveLoadService);
             LoadData();
