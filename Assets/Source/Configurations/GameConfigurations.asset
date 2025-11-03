@@ -24,7 +24,7 @@ MonoBehaviour:
   _walkSpeed: 2
   _sprintSpeed: 4
   _oxygenMaximum: 1000
-  _oxygenBasicDrain: 20
+  _oxygenBasicDrain: 15
   _drainFrequency: 1
   _sprintOxygenMultiplier: 1.5
   _oxygenReloadTime: 2
