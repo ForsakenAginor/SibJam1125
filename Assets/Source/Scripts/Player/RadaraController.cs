@@ -9,6 +9,7 @@ public class RadaraController : MonoBehaviour
     [SerializeField] private float _animationDuration = 0.5f;
     [SerializeField] private AudioSource audioDisableSource;
     [SerializeField] private AudioSource audioEnableSource; //сурсы для аудио
+    [SerializeField] private AudioSource _radarBeep;
     private float _showY = -0.5f;
     private float _hideY = -0.678f;
 
@@ -24,6 +25,18 @@ public class RadaraController : MonoBehaviour
         _radar.Disable();
 
         _input.OnRadarPressed += OnRadarPressed;
+    }
+    private void Update()
+    {
+        if (_isEnable == false && _radarBeep.isPlaying)
+        {
+            _radarBeep.Stop();
+        }
+
+        if (_isEnable == false)
+            return;
+
+
     }
 
     private void OnDestroy()
@@ -53,6 +66,11 @@ public class RadaraController : MonoBehaviour
                     if (!_isEnable)
                     {
                         _radar.Disable();
+                    }
+                    else
+                    {
+                        if (_radarBeep.isPlaying == false)
+                            _radarBeep.Play();
                     }
                 });
     }
