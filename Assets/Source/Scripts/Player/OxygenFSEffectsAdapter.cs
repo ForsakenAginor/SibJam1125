@@ -35,7 +35,11 @@ public class OxygenFSEffectsAdapter
         //_noiseEffect.SetEffectStrength(_oxygen.Percent);
         _colorizationEffect.SetStrength(_oxygen.Percent);
 
-        if(_oxygen.Percent < 0.5f)
+        if(_oxygen.Percent == 0)
+        {
+            _audioPlayer.PlayHeartbeat(0);
+        }
+        else if(_oxygen.Percent < 0.5f)
         {
             float remapedValue = Mathf.Lerp(_oxygen.Percent, MinVolume, MaxVolume);
             _audioPlayer.PlayHeartbeat(1 - remapedValue);
