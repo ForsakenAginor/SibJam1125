@@ -143,21 +143,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnLook(Vector2 lookInput)
+    private void OnLook(Vector2 input)
     {
-        Vector2 input = lookInput;
-
-        if (Mathf.Abs(input.x) < 10)
-        { input.x = 0; }
-
-        if (Mathf.Abs(input.y) < 10)
-        { input.y = 0; }
-
-        float x = Mathf.Clamp(input.x, -1f, 1f);
-        float y = Mathf.Clamp(input.y, -1f, 1f);
-        _xRotation -= y * verticalSensitivity;
+        
+        _xRotation -= input.y * 0.1f * verticalSensitivity;
         _xRotation = Mathf.Clamp(_xRotation, -maxLookAngle, maxLookAngle);
         _playerCamera.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-        transform.Rotate(Vector3.up * x * horizontalSensitivity);
+        transform.Rotate(Vector3.up * input.x *0.1f * horizontalSensitivity);
     }
 }
