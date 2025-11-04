@@ -9,6 +9,7 @@ public class RadaraController : MonoBehaviour
     [SerializeField] private float _animationDuration = 0.5f;
     [SerializeField] private AudioSource audioDisableSource;
     [SerializeField] private AudioSource audioEnableSource; //сурсы для аудио
+    [SerializeField] private AudioSource audioHeartSource; //сурсы для бипов
     private float _showY = -0.5f;
     private float _hideY = -0.678f;
 
@@ -42,9 +43,12 @@ public class RadaraController : MonoBehaviour
         if (_isEnable)
         {
             _radar.Enable();
-            audioEnableSource.Play(); 
+            audioEnableSource.Play();
+            audioHeartSource.Play();
         }
         else audioDisableSource.Play();//если при убирании, то проигрываем выключение
+
+
 
         _tween = _radar.transform.DOLocalMoveY(targetY, _animationDuration)
                 .SetEase(_isEnable ? Ease.OutBack : Ease.OutQuad)
@@ -53,6 +57,7 @@ public class RadaraController : MonoBehaviour
                     if (!_isEnable)
                     {
                         _radar.Disable();
+                        audioHeartSource.Stop();
                     }
                 });
     }
