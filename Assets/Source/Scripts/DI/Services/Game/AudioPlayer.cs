@@ -24,6 +24,8 @@ namespace Assets.Source.Scripts.DI.Services.Game
         [SerializeField] private AudioSource _rechargeFlashlight;
         [SerializeField] private AudioSource _heartBeat;
 
+        [SerializeField] private AudioSource _torchPickup;
+
         private void Awake()
         {
             if (_audioSourcesArray.Length != _maxSimultaneousSounds)
@@ -34,6 +36,11 @@ namespace Assets.Source.Scripts.DI.Services.Game
                 _audioSources.Enqueue(_audioSourcesArray[i]);
                 _cachedWaitWhiles.Add(_audioSourcesArray[i], new WaitWhileCached(() => false));
             }
+        }
+
+        public void PlayTorchPickup()
+        {
+            _torchPickup.Play();
         }
 
         public void PlayHeartbeat(float strength)

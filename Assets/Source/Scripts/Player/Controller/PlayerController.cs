@@ -103,29 +103,24 @@ public class PlayerController : MonoBehaviour
             currentSpeed *= maxSpeedKoef;
         }
 
-        // Check if the player has moved since the last frame
-        if (transform.position != lastPosition)
+        if (moveInput == Vector2.zero)
         {
-            // If the player is moving and the sound is not already playing, play the sound
-            if (!StepsAudioSource.isPlaying || !SprintAudioSource.isPlaying)
-            {
-                if (currentSpeed == sprintSpeed)
-                {
-                    SprintAudioSource.Play();
-                }
-                else StepsAudioSource.Play();
-            }
+            StepsAudioSource.Pause();
+            SprintAudioSource.Pause();
         }
         else
         {
-            // If the player is not moving, stop the sound
-            if (StepsAudioSource.isPlaying)
+            if (_input.IsSprinted && SprintAudioSource.isPlaying == false)
             {
-                StepsAudioSource.Stop();
+                Debug.Log("sprint started");
+                StepsAudioSource.Pause();
+                SprintAudioSource.Play();
+
             }
-            if (SprintAudioSource.isPlaying)
+            else if(_input.IsSprinted == false && StepsAudioSource.isPlaying == false)
             {
-                SprintAudioSource.Stop();
+                StepsAudioSource.Play();
+                SprintAudioSource.Pause();
             }
         }
 

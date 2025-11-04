@@ -1,3 +1,4 @@
+using Assets.Source.Scripts.DI.Services.Game;
 using Assets.Source.Scripts.Utility;
 using DG.Tweening;
 using System;
@@ -22,17 +23,19 @@ public class Tutor : MonoBehaviour
     private IInputStateManager _inputStateManager;
     private bool _isOxyDraining = false;
     private bool _isFlashlighPickuped = false;
+    private AudioPlayer _audioPlayer;
 
     private Tween _cleenKeyTween;
 
     [Inject]
-    public void Construct(IPlayerInput playerInput, IInputStateManager inputStateManager, PlayerFacade playerFacade, PlayerOxygenManager playerOxygenManager)
+    public void Construct(IPlayerInput playerInput, IInputStateManager inputStateManager, PlayerFacade playerFacade, PlayerOxygenManager playerOxygenManager, AudioPlayer audioPlayer)
     {
         _playerInput = playerInput;
         _inputStateManager = inputStateManager;
         _characterController = playerFacade.Colider;
         _flashlight = playerFacade.Flashlight;
         _oxygenManager = playerOxygenManager;
+        _audioPlayer = audioPlayer;
 
         _playerInput.OnClean += OnClean;
 
@@ -81,6 +84,7 @@ public class Tutor : MonoBehaviour
         _flashlightIcon.Enable();
         _pickupFlashlightText.Disable();
         _isFlashlighPickuped = true;
+        _audioPlayer.PlayTorchPickup();
     }
 
     private void CreateCleenTween()
