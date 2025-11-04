@@ -54,7 +54,10 @@ namespace Assets.Source.Scripts.DI.Services.Global
                 return;
             }
 
-            StopCoroutine(_musicQueue);
+                StopCoroutine(_musicQueue);
+
+
+
             _source.Stop();
             _source.clip = _bossFightClip;
             _source.loop = true;

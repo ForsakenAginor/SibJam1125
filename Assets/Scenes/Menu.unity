@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiAudioPlayerPrefab: {fileID: 1251788036786416393, guid: d26df3ef569a60f4fa8945bea4791ac9, type: 3}
-  _musicPlayerPrefab: {fileID: 5800889134257897738, guid: 8a463845d7679ce4db1f1cf1badce6b5, type: 3}
+  _musicPlayerPrefab: {fileID: 5800889134257897738, guid: f4265845257e72a439915ebc87459a5f, type: 3}
 --- !u!1 &273813979
 GameObject:
   m_ObjectHideFlags: 0

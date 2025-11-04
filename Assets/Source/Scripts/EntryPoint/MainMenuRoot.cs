@@ -1,5 +1,6 @@
 using Assets.Source.Scripts.AudioLogic;
 using Assets.Source.Scripts.DI.Services.Boot;
+using Assets.Source.Scripts.DI.Services.Global;
 using Assets.Source.Scripts.General;
 using Assets.Source.Scripts.Localization;
 using Assets.Source.Scripts.SaveSystem;
@@ -24,10 +25,12 @@ namespace Assets.Source.Scripts.EntryPoint
         private ISceneChanger _sceneChanger;
         private SaveDataProvider _saveDataProvider;
         private List<IDataSaveLoadService> _saveLoadServices = new();
+        private IMusicPlayer _musicPlayer;
 
         [Inject]
-        public void Construct(ISceneChanger sceneChanger, SaveDataProvider saveDataProvider)
+        public void Construct(ISceneChanger sceneChanger, SaveDataProvider saveDataProvider, IMusicPlayer musicPlayer)
         {
+            _musicPlayer = musicPlayer;
             _sceneChanger = sceneChanger;
             _saveDataProvider = saveDataProvider;
 
@@ -39,7 +42,6 @@ namespace Assets.Source.Scripts.EntryPoint
             _languageChanger = new(_saveDataProvider.PlayerSavedData);
 
             LoadData();
-
             _toEnglish.onClick.AddListener(ChangeLanguageToEnglish);
             _toRussian.onClick.AddListener(ChangeLanguageToRussian);
             _playButton.onClick.AddListener(OnPlayButtonClick);
