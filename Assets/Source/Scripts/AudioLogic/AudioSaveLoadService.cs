@@ -8,9 +8,9 @@ namespace Assets.Source.Scripts.AudioLogic
 {
     public class AudioSaveLoadService : MonoBehaviour, IDataSaveLoadService
     {
-        private const float DefaultMasterVolume = 0.8f;
+        private const float DefaultMasterVolume = 0.5f;
         private const float DefaultEffectsVolume = 0.5f;
-        private const float DefaultMusicVolume = 0.4f;
+        private const float DefaultMusicVolume = 0.5f;
 
         [SerializeField] private AudioMixer _audioMixer;
 

@@ -53,7 +53,7 @@ public class SensitivitySaveLoadService : IDataSaveLoadService
         if (_saveData.SensitivitySettings != null)
             _menu.SetSens(_saveData.SensitivitySettings.X, _saveData.SensitivitySettings.Y);
         else
-            _menu.SetSens(0.25f, 0.25f);
+            _menu.SetSens(0.2f, 0.4f);
 
         _isLoaded = true;
     }
