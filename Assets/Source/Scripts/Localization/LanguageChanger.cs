@@ -32,7 +32,7 @@ namespace Assets.Source.Scripts.Localization
         private void SetLanguage(string language)
         {
             if (language == null)
-                language = English;
+                language = Russian;
 
             switch(language)
             {
