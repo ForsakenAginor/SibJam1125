@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
                 SprintAudioSource.Play();
 
             }
-            else if(_input.IsSprinted == false && StepsAudioSource.isPlaying == false)
+            else if (_input.IsSprinted == false && StepsAudioSource.isPlaying == false)
             {
                 StepsAudioSource.Play();
                 SprintAudioSource.Pause();
@@ -145,9 +145,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnLook(Vector2 lookInput)
     {
+        Vector2 input = lookInput;
 
-        float x = Mathf.Clamp(lookInput.x, -1f, 1f);
-        float y = Mathf.Clamp(lookInput.y, -1f, 1f);
+        if (Mathf.Abs(input.x) < 10)
+        { input.x = 0; }
+
+        if (Mathf.Abs(input.y) < 10)
+        { input.y = 0; }
+
+        float x = Mathf.Clamp(input.x, -1f, 1f);
+        float y = Mathf.Clamp(input.y, -1f, 1f);
         _xRotation -= y * verticalSensitivity;
         _xRotation = Mathf.Clamp(_xRotation, -maxLookAngle, maxLookAngle);
         _playerCamera.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
