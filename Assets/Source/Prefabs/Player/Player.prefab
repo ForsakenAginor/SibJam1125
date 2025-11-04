@@ -1290,7 +1290,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1472
   _frequency: 0.25
-  _radius: 0.08
+  _radius: 0.25
   _distance: 10
 --- !u!114 &8660398712744134672
 MonoBehaviour:
