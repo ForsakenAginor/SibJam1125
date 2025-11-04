@@ -1541,7 +1541,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTex:
-        m_Texture: {fileID: 1892148297}
+        m_Texture: {fileID: 1447565226}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -1565,7 +1565,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DetailColor: {r: 0, g: 0, b: 0, a: 0}
     - _DetailData: {r: 0.55, g: -0.6, b: 0.005, a: 1}
-    - _DetailWindDirection: {r: 0.10960372, g: 0, b: 0, a: 0}
+    - _DetailWindDirection: {r: 0.06911468, g: 0, b: 0, a: 0}
     - _DistanceData: {r: 0, g: 0.70000017, b: 0.000004, a: 0.000006800001}
     - _FogOfWarCenter: {r: 0, g: 0, b: 0, a: 1}
     - _FogOfWarCenterAdjusted: {r: 0, g: 0, b: 0, a: 1}
@@ -1577,7 +1577,7 @@ Material:
     - _ShadowData: {r: 0.4, g: 0, b: 250, a: 0}
     - _SpecularColor: {r: 0.5, g: 0.5, b: 0.5, a: 0}
     - _SunDir: {r: 0.3213938, g: 0.76604444, b: -0.5566705, a: 0}
-    - _WindDirection: {r: 0.10960372, g: 0, b: 0, a: 0}
+    - _WindDirection: {r: 0.06911468, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!4 &706945234 stripped
@@ -3106,6 +3106,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3480648373195de42b4af96a2ada2b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpiderNavigator
+--- !u!84 &1447565226
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 256
+  m_Height: 256
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 0
+  m_ColorFormat: 8
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 0
+    m_WrapV: 0
+    m_WrapW: 0
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1001 &1489408791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3341,7 +3378,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 8300000, guid: 8dea33659a970a540947b717ecae9b32, type: 3}
+    - {fileID: 8300000, guid: c85e90da400c2ea45bd3f4479231e5d3, type: 3}
     - {fileID: 8300000, guid: 15ce89178efb1574a86039dbb788ed37, type: 3}
     - {fileID: 8300000, guid: 4c7875039147c604fb81dec4521e5262, type: 3}
     - {fileID: 8300000, guid: fa94c41fdd9668841a67f706d1aab4ec, type: 3}
@@ -3981,43 +4018,6 @@ Transform:
   - {fileID: 81809548}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -73.325}
---- !u!84 &1892148297
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 256
-  m_Height: 256
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 0
-  m_ColorFormat: 8
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 0
-    m_WrapV: 0
-    m_WrapW: 0
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!114 &1894181059 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1418232353371964698, guid: d341fdca5f411e3418ad6f9c0656067b, type: 3}
