@@ -7,12 +7,15 @@ public class RadaraController : MonoBehaviour
 {
     [SerializeField] private SwitchableElement _radar;
     [SerializeField] private float _animationDuration = 0.5f;
+    [SerializeField] private AudioSource audioDisableSource;
+    [SerializeField] private AudioSource audioEnableSource; //сурсы для аудио
     private float _showY = -0.5f;
     private float _hideY = -0.678f;
 
     private IPlayerInput _input;
     private bool _isEnable = false;
     private Tween _tween;
+    
 
     [Inject]
     public void Construct(IPlayerInput input)
@@ -39,16 +42,18 @@ public class RadaraController : MonoBehaviour
         if (_isEnable)
         {
             _radar.Enable();
+            audioEnableSource.Play(); 
         }
+        else audioDisableSource.Play();//если при убирании, то проигрываем выключение
 
         _tween = _radar.transform.DOLocalMoveY(targetY, _animationDuration)
-            .SetEase(_isEnable ? Ease.OutBack : Ease.OutQuad)
-            .OnComplete(() =>
-            {
-                if (!_isEnable)
+                .SetEase(_isEnable ? Ease.OutBack : Ease.OutQuad)
+                .OnComplete(() =>
                 {
-                    _radar.Disable();
-                }
-            });
+                    if (!_isEnable)
+                    {
+                        _radar.Disable();
+                    }
+                });
     }
 }

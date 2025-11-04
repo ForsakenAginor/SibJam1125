@@ -77,26 +77,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         HandleMovement();
-        // Check if the player has moved since the last frame
-        if (transform.position != lastPosition)
-        {
-            // If the player is moving and the sound is not already playing, play the sound
-            if (!StepsAudioSource.isPlaying)
-            {
-                StepsAudioSource.Play();
-            }
-        }
-        else
-        {
-            // If the player is not moving, stop the sound
-            if (StepsAudioSource.isPlaying)
-            {
-                StepsAudioSource.Stop();
-            }
-        }
-
-        // Update last position for the next frame
-        lastPosition = transform.position;
     }
 
     public void SetXSens(float x) => horizontalSensitivity = x;
@@ -123,16 +103,34 @@ public class PlayerController : MonoBehaviour
             currentSpeed *= maxSpeedKoef;
         }
 
-        if (_input.IsSprinted)
+        // Check if the player has moved since the last frame
+        if (transform.position != lastPosition)
         {
-            StepsAudioSource.enabled = false;
-            SprintAudioSource.enabled = true;
+            // If the player is moving and the sound is not already playing, play the sound
+            if (!StepsAudioSource.isPlaying || !SprintAudioSource.isPlaying)
+            {
+                if (currentSpeed == sprintSpeed)
+                {
+                    SprintAudioSource.Play();
+                }
+                else StepsAudioSource.Play();
+            }
         }
         else
         {
-            StepsAudioSource.enabled = true;
-            SprintAudioSource.enabled = false;
+            // If the player is not moving, stop the sound
+            if (StepsAudioSource.isPlaying)
+            {
+                StepsAudioSource.Stop();
+            }
+            if (SprintAudioSource.isPlaying)
+            {
+                SprintAudioSource.Stop();
+            }
         }
+
+        // Update last position for the next frame
+        lastPosition = transform.position;
 
         // Применение движения
         _characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
