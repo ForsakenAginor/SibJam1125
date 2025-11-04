@@ -20,7 +20,7 @@ public class HospitalScreen : SwitchableElement
                 {
                     hospitalImage.gameObject.SetActive(true);
                     blackImage.color = new Color(0, 0, 0, 1);
-                    blackImage.DOColor(new Color(0, 0, 0, 0), 5f).SetUpdate(true)
+                    blackImage.DOColor(new Color(0, 0, 0, 0), 20f).SetUpdate(true)
                         .OnComplete(() =>
                         {
                             winScreen.Enable();
