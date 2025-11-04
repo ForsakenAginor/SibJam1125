@@ -1498,12 +1498,34 @@ MonoBehaviour:
   data: 0
   entries:
   - Language: English
-    Text: 'Iurii: Unity Developer
+    Text: 'Game Design: shirokareka
 
-      aginor@ymail.com'
+      Development: forsakenaginor + andcode
+
+      2D
+      art: uliache
+
+      3D art: ezick14
+
+      Soundtrack: tenyato
+
+      Sound
+      Design: lowdie'
     Object: {fileID: 0}
   - Language: Russian
-    Text: "\u042E\u0440\u0438\u0439: Unity \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\naginor@ymail.com"
+    Text: 'Game Design: shirokareka
+
+      Development: forsakenaginor + andcode
+
+      2D
+      art: uliache
+
+      3D art: ezick14
+
+      Soundtrack: tenyato
+
+      Sound
+      Design: lowdie'
     Object: {fileID: 0}
   - Language: Turkish
     Text: "Iurii: Unity geli\u015Ftiricisi\naginor@ymail.com"
