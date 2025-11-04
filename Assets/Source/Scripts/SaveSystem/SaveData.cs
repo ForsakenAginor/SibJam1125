@@ -7,7 +7,7 @@ namespace Assets.Source.Scripts.SaveSystem
     {
         public SaveData()
         {
-            SelectedLanguage = "English";
+            SelectedLanguage = "Russian";
         }
 
         public ScreenSettings ScreenSettings { get; set; }
