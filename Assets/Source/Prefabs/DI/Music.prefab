@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0bdbb37576aa74593c4880564a9004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bossFightClip: {fileID: 0}
+  _bossFightClip: {fileID: 8300000, guid: c0a70358ab3f3b14ab082758c02c6309, type: 3}
   _clips:
   - {fileID: 8300000, guid: 236fb407623cb41508287f8a70a7c427, type: 3}
   _source: {fileID: 324093093272149218}
