@@ -8,9 +8,9 @@ public class OxygenStorageManager : MonoBehaviour
     private PlayerOxygenManager _oxygenManger;
 
     [Inject]
-    public void Construct(PlayerFacade player)
+    public void Construct(PlayerOxygenManager player)
     {
-        _oxygenManger = player.Oxygen;
+        _oxygenManger = player;
 
         foreach (var storage in _storages)
         {

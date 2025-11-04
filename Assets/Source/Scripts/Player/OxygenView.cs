@@ -12,9 +12,9 @@ public class OxygenView : MonoBehaviour
     private IResource _oxygen;
 
     [Inject]
-    public void Construct(PlayerFacade player)
+    public void Construct(PlayerOxygenManager player)
     {
-        _oxygen = player.Oxygen.Oxigen;
+        _oxygen = player.Oxigen;
     }
 
     private void Start()

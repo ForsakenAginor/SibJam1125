@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float sprintSpeed = 8f;
     [SerializeField] private float maxSpeedKoef = 0.5f;
     [SerializeField] private float jumpHeight = 2f;
-    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float gravity = -9.8f;
 
     [Header("Look Settings")]
     [SerializeField] private Transform _cameraAnchor;

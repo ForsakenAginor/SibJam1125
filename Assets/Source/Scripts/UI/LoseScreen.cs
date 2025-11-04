@@ -11,9 +11,9 @@ public class LoseScreen : MonoBehaviour
     private IInputStateManager _input;
 
     [Inject]
-    public void Costruct(PlayerFacade player, IInputStateManager input)
+    public void Costruct(PlayerOxygenManager player, IInputStateManager input)
     {
-        _oxygen = player.Oxygen.Oxigen;
+        _oxygen = player.Oxigen;
         _input = input;
 
         _oxygen.ResourceOver += OnOxygenEnd;

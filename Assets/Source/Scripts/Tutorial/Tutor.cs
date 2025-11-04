@@ -26,12 +26,13 @@ public class Tutor : MonoBehaviour
     private Tween _cleenKeyTween;
 
     [Inject]
-    public void Construct(IPlayerInput playerInput, IInputStateManager inputStateManager, PlayerFacade playerFacade)
+    public void Construct(IPlayerInput playerInput, IInputStateManager inputStateManager, PlayerFacade playerFacade, PlayerOxygenManager playerOxygenManager)
     {
         _playerInput = playerInput;
         _inputStateManager = inputStateManager;
         _characterController = playerFacade.Colider;
         _flashlight = playerFacade.Flashlight;
+        _oxygenManager = playerOxygenManager;
 
         _playerInput.OnClean += OnClean;
 
@@ -54,9 +55,8 @@ public class Tutor : MonoBehaviour
         }
     }
 
-    public void Init(PlayerOxygenManager oxygenManager)
+    public void Init()
     {
-        _oxygenManager = oxygenManager;
         _flashlight.Init();
         CreateCleenTween();
 

@@ -28,8 +28,6 @@ public class PlayerFacade : MonoBehaviour
 
     public PlayerSensitivityChanger SensitivityChanger => _sensitivityChanger;
 
-    public PlayerOxygenManager Oxygen => _oxygenManager;
-
     public PlayerDamageTaker DamageTaker => _damageTaker;
 
     public Flashlight Flashlight => _flashlight;

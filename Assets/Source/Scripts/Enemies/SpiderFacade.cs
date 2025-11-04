@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Zenject;
 
@@ -16,6 +17,11 @@ public class SpiderFacade : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(Routine());
+    }
+    private IEnumerator Routine()
+    {
+        yield return new WaitForSeconds(10f);
         _stateFactory.CreateStateMachine(_navigator, _playerDetector);        
     }
 }

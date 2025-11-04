@@ -49,7 +49,7 @@ namespace Assets.Source.Scripts.EntryPoint
 
         private void Start()
         {
-            _tutor.Init(_playerFacade.Oxygen);
+            _tutor.Init();
 
 
 
