@@ -144,5 +144,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bossFightClip: {fileID: 0}
   _clips:
-  - {fileID: 8300000, guid: c001de487dbb14544bc3abbdd966a2ab, type: 3}
+  - {fileID: 8300000, guid: 236fb407623cb41508287f8a70a7c427, type: 3}
   _source: {fileID: 324093093272149218}
